@@ -1,0 +1,144 @@
+#!/usr/bin/env bash
+
+# Licensed to Datalayer (https://datalayer.io) under one or more
+# contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership. Datalayer licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+export DLA_REPOS_ORIGIN_REMOTE="
+airflow|https://github.com/datalayer-contrib/airflow.git|https://github.com/apache/airflow.git|master \
+airflow-operator|https://github.com/datalayer-contrib/airflow-operator.git|https://github.com/GoogleCloudPlatform/airflow-operator.git|master \
+binderhub|https://github.com/datalayer-contrib/binderhub.git|https://github.com/jupyterhub/binderhub.git|master \
+binderhub-deploy|https://github.com/datalayer-contrib/binderhub-deploy.git|https://github.com/jupyterhub/mybinder.org-deploy.git|master \
+binderhub-docs|https://github.com/datalayer-contrib/binderhub-docs.git|https://github.com/jupyterhub/binder.git|master \
+blog|https://github.com/datalayer/blog.git|https://github.com/datalayer/blog.git|master \
+blueprint-js|https://github.com/datalayer-contrib/blueprint-js.git|https://github.com/palantir/blueprint.git|develop \
+data8-datascience|https://github.com/datalayer-contrib/data8-datascience.git|https://github.com/data-8/datascience.git|master \
+data8-materials-fa17|https://github.com/datalayer-contrib/data8-materials-fa17.git|https://github.com/data-8/materials-fa17.git|master \
+fabric-ui|https://github.com/datalayer-contrib/fabric-ui.git|https://github.com/officedev/office-ui-fabric-react.git|master \
+hadoop|https://github.com/datalayer-contrib/hadoop.git|https://github.com/apache/hadoop.git|trunk \
+hbase|https://github.com/datalayer-contrib/hbase.git|https://github.com/apache/hbase.git|master \
+hbase-indexer|https://github.com/datalayer-contrib/hbase-indexer.git|https://github.com/NGDATA/hbase-indexer.git|master \
+hbase-phoenix|https://github.com/datalayer-contrib/hbase-phoenix.git|https://github.com/apache/phoenix.git|master \
+hdfs-chart|https://github.com/datalayer-contrib/hdfs-chart.git|https://github.com/apache-spark-on-k8s/kubernetes-hdfs.git|master \
+hdfs-kerberos-chart|https://github.com/datalayer-contrib/hdfs-kerberos-chart.git|https://github.com/ifilonenko/hadoop-kerberos-helm.git|master \
+ipfs|https://github.com/datalayer-contrib/ipfs.git|https://github.com/ipfs/go-ipfs.git|master \
+janusgraph|https://github.com/datalayer-contrib/janusgraph.git|https://github.com/JanusGraph/janusgraph.git|master \
+jupyter|https://github.com/datalayer-contrib/jupyter.git|https://github.com/jupyter/jupyter.git|master \
+jupyter-client|https://github.com/datalayer-contrib/jupyter-client.git|https://github.com/jupyter/jupyter_client.git|master \
+jupyter-cookiecutter|https://github.com/datalayer-contrib/jupyter-cookiecutter.git|https://github.com/jupyter-widgets/widget-ts-cookiecutter.git|master \
+jupyter-dashboards|https://github.com/datalayer-contrib/jupyter-dashboards.git|https://github.com/jupyter/dashboards.git|master \
+jupyter-design|https://github.com/datalayer-contrib/jupyter-design.git|https://github.com/jupyter/design.git|master \
+jupyter-docker|https://github.com/datalayer-contrib/jupyter-docker.git|https://github.com/jupyter/docker-stacks.git|master \
+jupyter-gateway-enterprise|https://github.com/datalayer-contrib/jupyter-gateway-enterprise.git|https://github.com/jupyter/enterprise_gateway.git|master \
+jupyter-gateway-kernel|https://github.com/datalayer-contrib/jupyter-gateway-kernel.git|https://github.com/jupyter/kernel_gateway.git|master \
+jupyter-ipywidgets|https://github.com/datalayer-contrib/jupyter-ipywidgets.git|https://github.com/jupyter-widgets/ipywidgets.git|master \
+jupyter-ipywidgets-tutorial|https://github.com/datalayer-contrib/jupyter-ipywidgets-tutorial.git|https://github.com/jupyter-widgets/tutorial.git|master \
+jupyter-kernel-python|https://github.com/datalayer-contrib/jupyter-kernel-python.git|https://github.com/ipython/ipykernel.git|master \
+jupyter-kernel-toree|https://github.com/datalayer-contrib/jupyter-kernel-toree.git|https://github.com/apache/incubator-toree.git|master \
+jupyter-nb2kg|https://github.com/datalayer-contrib/jupyter-nb2kg.git|https://github.com/jupyter/nb2kg.git|master \
+jupyter-nbconvert-examples|https://github.com/datalayer-contrib/jupyter-nbconvert-examples.git|https://github.com/jupyter/nbconvert-examples.git|master \
+jupyter-nbconvert|https://github.com/datalayer-contrib/jupyter-nbconvert.git|https://github.com/jupyter/nbconvert.git|master \
+jupyter-nbdime|https://github.com/datalayer-contrib/jupyter-nbdime.git|https://github.com/datalayer-contrib/jupyter-nbdime.git|master \
+jupyter-nbformat|https://github.com/datalayer-contrib/jupyter-nbformat.git|https://github.com/datalayer-contrib/jupyter-nbformat.git|master \
+jupyter-nbgrader|https://github.com/datalayer-contrib/jupyter-nbgrader.git|https://github.com/jupyter/nbgrader.git|master \
+jupyter-nbviewer|https://github.com/datalayer-contrib/jupyter-nbviewer.git|https://github.com/jupyter/nbviewer.git|master \
+jupyter-notebook|https://github.com/datalayer-contrib/jupyter-notebook.git|https://github.com/jupyter/notebook.git|master \
+jupyter-packaging|https://github.com/datalayer-contrib/jupyter-packaging.git|https://github.com/jupyter/jupyter-packaging.git|master \
+jupyter-pizzabutton|https://github.com/datalayer-contrib/jupyter-pizzabutton.git|https://github.com/peterskipper/pizzabutton.git|master \
+jupyter-sparkmagic|https://github.com/datalayer-contrib/jupyter-sparkmagic.git|https://github.com/jupyter-incubator/sparkmagic.git|master \
+jupyterhub|https://github.com/datalayer-contrib/jupyterhub.git|https://github.com/jupyterhub/jupyterhub.git|master \
+jupyterhub-auth-ldap|https://github.com/datalayer-contrib/jupyterhub-auth-ldap.git|https://github.com/jupyterhub/ldapauthenticator.git|master \
+jupyterhub-auth-oauth|https://github.com/datalayer-contrib/jupyterhub-auth-oauth.git|https://github.com/jupyterhub/oauthenticator.git|master \
+jupyterhub-auth-tmp|https://github.com/datalayer-contrib/jupyterhub-auth-tmp.git|https://github.com/jupyterhub/tmpauthenticator.git|master \
+jupyterhub-deploy-docker|https://github.com/datalayer-contrib/jupyterhub-deploy-docker.git|https://github.com/jupyterhub/jupyterhub-deploy-docker.git|master \
+jupyterhub-deploy-teaching|https://github.com/datalayer-contrib/jupyterhub-deploy-teaching.git|https://github.com/jupyterhub/jupyterhub-deploy-teaching.git|master \
+jupyterhub-gitpuller|https://github.com/datalayer-contrib/jupyterhub-gitpuller.git|https://github.com/jupyterhub/nbgitpuller.git|master \
+jupyterhub-helm-chart|https://github.com/datalayer-contrib/jupyterhub-helm-chart.git|https://github.com/jupyterhub/helm-chart.git|master \
+jupyterhub-k8s|https://github.com/datalayer-contrib/jupyterhub-k8s.git|https://github.com/jupyterhub/zero-to-jupyterhub-k8s.git|master \
+jupyterhub-kerberos-example|https://github.com/datalayer-contrib/jupyterhub-kerberos-example.git|https://github.com/jupyterhub/jupyterhub-example-kerberos.git|master \
+jupyterhub-proxy-http|https://github.com/datalayer-contrib/jupyterhub-proxy-http.git|https://github.com/jupyterhub/configurable-http-proxy.git|master \
+jupyterhub-proxy-R|https://github.com/datalayer-contrib/jupyterhub-proxy-R.git|https://github.com/jupyterhub/nbrsessionproxy.git|master \
+jupyterhub-spawner-batch|https://github.com/datalayer-contrib/jupyterhub-spawner-batch.git|https://github.com/jupyterhub/batchspawner.git|master \
+jupyterhub-spawner-docker|https://github.com/datalayer-contrib/jupyterhub-spawner-docker.git|https://github.com/jupyterhub/dockerspawner.git|master \
+jupyterhub-spawner-k8s|https://github.com/datalayer-contrib/jupyterhub-spawner-k8s.git|https://github.com/jupyterhub/kubespawner.git|master \
+jupyterhub-spawner-sudo|https://github.com/datalayer-contrib/jupyterhub-spawner-sudo.git|https://github.com/jupyterhub/sudospawner.git|master \
+jupyterhub-spawner-systemd|https://github.com/datalayer-contrib/jupyterhub-spawner-systemd.git|https://github.com/jupyterhub/systemdspawner.git|master \
+jupyterhub-spawner-wrap|https://github.com/datalayer-contrib/jupyterhub-spawner-wrap.git|https://github.com/jupyterhub/wrapspawner.git|master \
+jupyterhub-tutorial|https://github.com/datalayer-contrib/jupyterhub-tutorial.git|https://github.com/jupyterhub/jupyterhub-tutorial.git|master \
+jupyterlab|https://github.com/datalayer-contrib/jupyterlab.git|https://github.com/jupyterlab/jupyterlab.git|master \
+jupyterlab-cookiecutter-extension|https://github.com/datalayer-contrib/jupyterlab-cookiecutter-extension.git|https://github.com/jupyterlab/extension-cookiecutter-ts.git|master \
+jupyterlab-cookiecutter-mimerender|https://github.com/datalayer-contrib/jupyterlab-cookiecutter-mimerender.git|https://github.com/jupyterlab/mimerender-cookiecutter-ts.git|master \
+jupyterlab-demo|https://github.com/datalayer-contrib/jupyterlab-demo.git|https://github.com/jupyterlab/jupyterlab-demo.git|master \
+jupyterlab-drawio|https://github.com/datalayer-contrib/jupyterlab-drawio.git|https://github.com/QuantStack/jupyterlab-drawio.git|master \
+jupyterlab-git|https://github.com/datalayer-contrib/jupyterlab-git.git|https://github.com/jupyterlab/jupyterlab-git.git|master \
+jupyterlab-github|https://github.com/datalayer-contrib/jupyterlab-github.git|https://github.com/jupyterlab/jupyterlab-github.git|master \
+jupyterlab-google-drive|https://github.com/datalayer-contrib/jupyterlab-google-drive.git|https://github.com/jupyterlab/jupyterlab-google-drive.git|master \
+jupyterlab-hub|https://github.com/datalayer-contrib/jupyterlab-hub.git|https://github.com/jupyterhub/jupyterlab-hub.git|master \
+jupyterlab-latex|https://github.com/datalayer-contrib/jupyterlab-latex.git|https://github.com/jupyterlab/jupyterlab-latex.git|master \
+jupyterlab-renderers|https://github.com/datalayer-contrib/jupyterlab-renderers.git|https://github.com/jupyterlab/jupyter-renderers.git|master \
+jupyterlab-server|https://github.com/datalayer-contrib/jupyterlab-server.git|https://github.com/jupyterlab/jupyterlab_server.git|master \
+jupyterlab-statusbar|https://github.com/datalayer-contrib/jupyterlab-statusbar.git|https://github.com/jupyterlab/jupyterlab-statusbar.git|master \
+jupyterlab-thebe|https://github.com/datalayer-contrib/jupyterlab-thebe.git|https://github.com/minrk/thebelab.git|master \
+jupyterlab-toastify|https://github.com/datalayer-contrib/jupyterlab-toastify.git|https://github.com/fcollonval/jupyterlab_toastify.git|master \
+jupyterlab-toc|https://github.com/datalayer-contrib/jupyterlab-toc.git|https://github.com/jupyterlab/jupyterlab-toc.git|master \
+jupyterlab-voyager|https://github.com/datalayer-contrib/jupyterlab-voyager.git|https://github.com/altair-viz/jupyterlab_voyager.git|master \
+jupyterlab-xkcd|https://github.com/datalayer-contrib/jupyterlab-xkcd.git|https://github.com/jupyterlab/jupyterlab_xkcd.git|0.32 \
+k8s-ark|https://github.com/datalayer-contrib/k8s-ark.git|https://github.com/heptio/ark.git|master \
+k8s-ark-plugin-example|https://github.com/datalayer-contrib/k8s-ark-plugin-example.git|https://github.com/heptio/ark-plugin-example.git|master \
+k8s-aws-authenticator|https://github.com/datalayer-contrib/k8s-aws-authenticator.git|https://github.com/kubernetes-sigs/aws-iam-authenticator.git|master \
+k8s-aws-quickstart|https://github.com/datalayer-contrib/k8s-aws-quickstart.git|https://github.com/heptio/aws-quickstart.git|master \
+k8s-cluster-api|https://github.com/datalayer-contrib/k8s-cluster-api.git|https://github.com/kubernetes-sigs/cluster-api.git|master \
+k8s-cluster-api-aws|https://github.com/datalayer-contrib/k8s-cluster-api-aws.git|https://github.com/kubernetes-sigs/cluster-api-provider-aws.git|master \
+k8s-cluster-api-azure|https://github.com/datalayer-contrib/k8s-cluster-api-azure.git|https://github.com/kubernetes-sigs/cluster-api-provider-azure.git|master \
+k8s-cluster-api-gcp|https://github.com/datalayer-contrib/k8s-cluster-api-gcp.git|https://github.com/kubernetes-sigs/cluster-api-provider-gcp.git|master \
+k8s-cluster-api-ssh|https://github.com/datalayer-contrib/k8s-cluster-api-ssh.git|https://github.com/samsung-cnct/cluster-api-provider-ssh.git|master \
+k8s-dashboard|https://github.com/datalayer-contrib/k8s-dashboard.git|https://github.com/kubernetes/dashboard.git|master \
+k8s-dex|https://github.com/datalayer-contrib/k8s-dex.git|https://github.com/dexidp/dex.git|master \
+kubeflow-examples|https://github.com/datalayer-contrib/kubeflow-examples.git|https://github.com/kubeflow/examples.git|master \
+kubeflow|https://github.com/datalayer-contrib/kubeflow.git|https://github.com/kubeflow/kubeflow.git|master \
+kubeflow-kvc|https://github.com/datalayer-contrib/kubeflow-kvc.git|https://github.com/IntelAI/vck.git|master \
+kubeflow-tf-operator|https://github.com/datalayer-contrib/kubeflow-tf-operator.git|https://github.com/kubeflow/tf-operator.git|master \
+kubicorn|https://github.com/datalayer-contrib/kubicorn.git|https://github.com/kubicorn/kubicorn.git|master \
+kubicorn-bootstrap|https://github.com/datalayer-contrib/kubicorn-bootstrap.git|https://github.com/kubicorn/bootstrap.git|master \
+kubicorn-controller|https://github.com/datalayer-contrib/kubicorn-controller.git|https://github.com/kubicorn/controller.git|master \
+nteract|https://github.com/datalayer-contrib/nteract.git|https://github.com/nteract/nteract.git|master \
+nteract-data-explorer|https://github.com/datalayer-contrib/nteract-data-explorer.git|https://github.com/benrussert/data-explorer.git|master \
+nteract-hydrogen|https://github.com/datalayer-contrib/nteract-hydrogen.git|https://github.com/nteract/hydrogen.git|master \
+nteract-ion|https://github.com/datalayer-contrib/nteract-ion.git|https://github.com/nteract/ion.git|master \
+nteract-vdom|https://github.com/datalayer-contrib/nteract-vdom.git|https://github.com/nteract/vdom.git|master \
+papermill|https://github.com/datalayer-contrib/papermill.git|https://github.com/nteract/papermill.git|master \
+papermill-bookstore|https://github.com/datalayer-contrib/papermill-bookstore.git|https://github.com/nteract/bookstore.git|master \
+papermill-paperboy|https://github.com/datalayer-contrib/papermill-paperboy.git|https://github.com/timkpaine/paperboy.git|master \
+papermill-scrapbook|https://github.com/datalayer-contrib/papermill-scrapbook.git|https://github.com/nteract/scrapbook.git|master \
+spark|https://github.com/datalayer-contrib/spark.git|https://github.com/apache/spark.git|master \
+spark-hbase|https://github.com/datalayer-contrib/spark-hbase-connector.git|https://github.com/hortonworks-spark/shc.git|master \
+spark-kafka|https://github.com/datalayer-contrib/spark-kafka-connector.git|https://github.com/hortonworks-spark/skc.git|master \
+spark-operator|https://github.com/datalayer-contrib/spark-operator.git|https://github.com/GoogleCloudPlatform/spark-on-k8s-operator.git|master \
+spark-solr|https://github.com/datalayer-contrib/spark-solr.git|https://github.com/lucidworks/spark-solr.git|master \
+zeppelin|https://github.com/datalayer-contrib/zeppelin.git|https://github.com/apache/zeppelin.git|master \
+";
+
+DLA_REPOS=()
+for repo in $DLA_REPOS_ORIGIN_REMOTE; do
+  name="$(cut -d'|' -f1 <<<"$repo")"
+  origin="$(cut -d'|' -f2 <<<"$repo")"
+  remote="$(cut -d'|' -f3 <<<"$repo")"
+  branch="$(cut -d'|' -f4 <<<"$repo")"
+  DLA_REPOS+=($name)
+  DLA_REPOS+=($origin)
+  DLA_REPOS+=($remote)
+  DLA_REPOS+=($branch)
+done

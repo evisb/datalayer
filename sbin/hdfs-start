@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+# Licensed to Datalayer (https://datalayer.io) under one or more
+# contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership. Datalayer licenses this file
+# to you under the Apache License, Version 2.0 (the 
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+echo -e $BOLD$YELLOW"Starting Apache HDFS..."$NOCOLOR$NOBOLD
+echo
+
+export DLA_HADOOP_STATUS=starting
+
+# To debug Kerberos, use -Dsun.security.krb5.debug=true -Dsun.security.spnego.debug=true -Djavax.net.debug=all
+
+# Start the HDFS with the following command, run on the designated NameNode:
+$HADOOP_HOME/bin/hdfs --daemon start namenode
+# $HADOOP_HOME/sbin/hadoop-daemon.sh --config $HADOOP_CONF_DIR start namenode
+
+# Start the secondary namenode:
+$HADOOP_HOME/bin/hdfs --daemon start secondarynamenode
+# $HADOOP_HOME/sbin/hadoop-daemon.sh --config $HADOOP_CONF_DIR start secondarynamenode
+
+# Run a script to start DataNodes on all slaves:
+$HADOOP_HOME/bin/hdfs --daemon start datanode
+# $HADOOP_HOME/sbin/hadoop-daemon.sh --config $HADOOP_CONF_DIR start datanode
+
+DLA_SKIP_HEADER=true dla hdfs-help

@@ -1,0 +1,12 @@
+apiVersion: v1
+description: Web-based Data databook that enables data-driven, interactive data analytics and collaborative documents.
+name: databook
+version: 0.0.1
+appVersion: 0.0.1
+home: https://datalayer.io
+sources:
+- https://github.com/datalayer/databook
+icon: https://docs.datalayer.io/logo/datalayer-25.svg
+maintainers:
+- name: eric
+  email: eric@datalayer.io

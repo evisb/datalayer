@@ -1,0 +1,41 @@
+# https://docs.traefik.io/user-guide/examples
+# https://docs.traefik.io/user-guide/docker-and-lets-encrypt
+# https://github.com/wekan/wekan/wiki/Traefik-and-self-signed-SSL-certs
+
+debug = true
+
+logLevel = "DEBUG"
+defaultEntryPoints = ["https", "http", "eightzero"]
+
+rootCAs = [ "/certs/datalayer.crt" ]
+insecureSkipVerify = true
+
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+    [entryPoints.http.redirect]
+    entryPoint = "https"
+  [entryPoints.https]
+  address = ":443"
+  [entryPoints.https.tls]
+    [[entryPoints.https.tls.certificates]]
+      certFile = "/certs/local.datalayer.io.crt"
+      keyFile = "/certs/local.datalayer.io.key"
+    [[entryPoints.https.tls.certificates]]
+      certFile = "/certs/ldap.local.datalayer.io.crt"
+      keyFile = "/certs/ldap.local.datalayer.io.key"
+  [entryPoints.eightzero]
+  address = ":8089"
+
+[api]
+entrypoint = "eightzero"
+
+[retry]
+
+[docker]
+endpoint = "unix:///var/run/docker.sock"
+domain = "docker.localhost"
+watch = true
+exposedbydefault = false
+swarmMode = true
+network = "datalayer"

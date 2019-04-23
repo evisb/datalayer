@@ -1,0 +1,19 @@
+defaultBackend:
+  enabled: true
+controller:
+#  defaultBackendService: "default/explorer-kuber"
+  hostNetwork: false
+  nodeSelector:
+    datalayer-role: "master"
+  service:
+    annotations: {
+      "kubernetes.io/ingress.class": "nginx",
+      "ingress.kubernetes.io/ssl-redirect": "true",
+      "service.beta.kubernetes.io/aws-load-balancer-ssl-ports": "ssl",
+      "service.beta.kubernetes.io/aws-load-balancer-backend-protocol": "ssl",
+      "service.beta.kubernetes.io/aws-load-balancer-additional-resource-tags": "datalayer-role=explorer,kuber-role=explorer"
+#      "service.beta.kubernetes.io/aws-load-balancer-ssl-cert": "",
+#      "service.beta.kubernetes.io/aws-load-balancer-extra-security-groups": ""
+    }
+# tcp:
+#  81: "default/zeppelin-zeppelin:8080"

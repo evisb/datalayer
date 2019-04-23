@@ -1,0 +1,17 @@
+zeppelin:
+  image: datalayer/zeppelin:0.0.1
+  hostNetwork: false
+  imagePullPolicy: IfNotPresent
+  notebookRepo: https://github.com/datalayer/notebook-init.git
+  resources:
+    limits:
+      memory: "8192Mi"
+      cpu: "3000m"
+hdfs:
+  useConfigMap: true
+  configMapName: hdfs-hdfs-hdfs-dn
+  configPath: /etc/hdfs/conf
+spark:
+  driverMemory: 8g
+  executorMemory: 8g
+  numExecutors: 3

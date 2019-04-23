@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+# Licensed to Datalayer (https://datalayer.io) under one or more
+# contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership. Datalayer licenses this file
+# to you under the Apache License, Version 2.0 (the 
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+echo -e $BOLD$YELLOW"Generating Apache Hadoop Configuration from Template"$NOCOLOR$NOBOLD
+echo
+
+sed -e "s|DLA_HADOOP_DATA_DIR|$DLA_HADOOP_DATA_DIR|g" $DLA_HADOOP_CONF_TEMPLATE_DIR/core-site.template.xml > /tmp/core-site.xml
+sed -e "s|DLA_HADOOP_DATA_DIR|$DLA_HADOOP_DATA_DIR|g" $DLA_HADOOP_CONF_TEMPLATE_DIR/hdfs-site.template.xml > /tmp/hdfs-site.xml
+sed -e "s|DLA_HADOOP_DATA_DIR|$DLA_HADOOP_DATA_DIR|g" $DLA_HADOOP_CONF_TEMPLATE_DIR/mapred-site.template.xml > /tmp/mapred-site.xml
+sed -e "s|DLA_HADOOP_DATA_DIR|$DLA_HADOOP_DATA_DIR|g" $DLA_HADOOP_CONF_TEMPLATE_DIR/yarn-site.template.xml > /tmp/yarn-site.xml
+sed -e "s|DLA_HADOOP_DATA_DIR|$DLA_HADOOP_DATA_DIR|g" $DLA_HADOOP_CONF_TEMPLATE_DIR/ssl-client.template.xml > /tmp/ssl-client.xml
+sed -e "s|DLA_HADOOP_DATA_DIR|$DLA_HADOOP_DATA_DIR|g" $DLA_HADOOP_CONF_TEMPLATE_DIR/ssl-server.template.xml > /tmp/ssl-server.xml
+
+sed -e "s|HOSTNAME|$HOSTNAME|g" /tmp/core-site.xml > $HADOOP_CONF_DIR/core-site.xml
+sed -e "s|HOSTNAME|$HOSTNAME|g" /tmp/hdfs-site.xml > $HADOOP_CONF_DIR/hdfs-site.xml
+sed -e "s|HOSTNAME|$HOSTNAME|g" /tmp/mapred-site.xml > $HADOOP_CONF_DIR/mapred-site.xml
+sed -e "s|HOSTNAME|$HOSTNAME|g" /tmp/yarn-site.xml > $HADOOP_CONF_DIR/yarn-site.xml
+sed -e "s|HOSTNAME|$HOSTNAME|g" /tmp/ssl-client.xml > $HADOOP_CONF_DIR/ssl-client.xml
+sed -e "s|HOSTNAME|$HOSTNAME|g" /tmp/ssl-server.xml > $HADOOP_CONF_DIR/ssl-server.xml
+
+echo $HADOOP_CONF_DIR
+ls -alp $HADOOP_CONF_DIR

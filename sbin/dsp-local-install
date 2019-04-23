@@ -1,0 +1,175 @@
+#!/usr/bin/env bash
+
+# Licensed to Datalayer (https://datalayer.io) under one or more
+# contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership. Datalayer licenses this file
+# to you under the Apache License, Version 2.0 (the 
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+echo -e $BOLD$YELLOW"Installing Datalayer on Local Environment"$NOCOLOR$NOBOLD
+echo
+
+# ------------------------------------
+
+linux_pre() {
+    echo "JupyterLab pre-install on Linux"
+#     sudo apt -y install libcurl4-openssl-dev
+#     sudo apt -y install slapd ldap-utils
+#     sudo dpkg-reconfigure slapd
+#     sudo update-rc.d slapd enable
+#     mkdir $DLAOPT/docker-lib && ln -s $DLAOPT/docker-lib /var/lib/docker && sudo apt -y install docker.io
+#     sudo apt install -y nodejs
+#     sudo apt install -y npm
+#     npm install -g yarn
+}
+
+macos_pre() {
+    echo "JupyterLab pre-install on Macos"
+}
+
+# case "${OS}" in
+#     LINUX)     linux_pre;;
+#     MACOS)     macos_pre;;
+#     *)         echo "Unsupported operating system ${OS}"
+# esac
+
+# ------------------------------------
+
+. $DLAOPT/miniconda3/etc/profile.d/conda.sh
+conda deactivate
+rm -fr $DLAOPT/miniconda3/envs/datalayer
+conda remove --yes --all --name datalayer
+conda config --add channels conda-forge
+conda env create -n datalayer -f $DLAHOME/conda.yml
+conda activate datalayer
+conda env list
+
+# ------------------------------------
+
+mkdir -p $DLAHOME/var/datalayer
+chown -R $USER:$(id -gn) $DLAHOME/srv/jupyterhub
+
+openssl rand -hex 32 > $DLAHOME/srv/jupyterhub/datalayer_auth_token
+chmod 600 $DLAHOME/srv/jupyterhub/datalayer_auth_token
+openssl rand -hex 32 > $DLAHOME/srv/jupyterhub/datalayer_cookie_secret
+chmod 600 $DLAHOME/srv/jupyterhub/datalayer_cookie_secret
+
+mkdir -p $DLAHOME/var/log
+touch $DLAHOME/var/log/datalayer.log
+chown -R $USER:$(id -gn) $DLAHOME/var/log/datalayer.log
+
+# ------------------------------------
+
+rm -fr ~/.yarn-cache
+yarn config set cache-folder ~/.yarn-cache
+
+# ------------------------------------
+
+rm -fr ~/.jupyter
+
+# ------------------------------------
+
+sudo npm install -g configurable-http-proxy
+
+# ------------------------------------
+
+install_jupyter() {
+    cd $DLAHOME/repos/jupyter
+    pip install -e .
+}
+
+install_jupyter
+
+# ------------------------------------
+
+install_jupyterhub() {
+
+#    cd $DLAHOME/repos/jupyterhub
+#    git checkout datalayer
+#    rm -fr dist
+#    rm -fr *.egg-info
+#    python setup.py clean sdist
+#    pip install -e .
+    pip install jupyterhub==0.9.6
+
+#    cd $DLAHOME/repos/jupyterhub-auth-oauth
+#    pip install -e .
+    pip install oauthenticator
+
+    cd $DLAHOME/repos/jupyterhub-auth-ldap
+    git checkout datalayer
+    pip install -e .
+
+    cd $DLAHOME/repos/jupyterhub-spawner-batch
+    pip install -e .
+    
+    cd $DLAHOME/repos/jupyterhub-spawner-wrap
+    pip install -e .
+
+    cd $DLAHOME/repos/jupyterhub-spawner-sudo
+    pip install -e .
+    
+    cd $DLAHOME/repos/jupyterhub-spawner-docker
+    pip install -e .
+
+}
+
+install_jupyterhub
+
+# ------------------------------------
+
+install_jupyterlab() {
+
+    cd $DLAHOME/repos/jupyterlab
+    git checkout datalayer
+    pip install -e .
+    jupyter serverextension enable --py jupyterlab --sys-prefix
+    yarn install
+    yarn clean
+    yarn install
+    cd $DLAHOME/repos/jupyterlab/packages/cells
+    yarn install
+    yarn build
+    jupyter lab build
+
+    cd $DLAHOME/repos/jupyterlab-server
+    pip install -e .
+
+    cd $DLAHOME/apps/jupyterlab-datalayer
+    yarn clean
+    rm -fr node_modules || true
+    rm -fr lib || true
+    yarn install
+    yarn build
+    make jupyter-lab-ext-enable
+
+#    jupyter lab build
+
+}
+
+install_jupyterlab
+
+install_explorer() {
+
+    cd $DLAHOME/apps/ui && \
+    make clean && \
+    make build
+}
+
+install_explorer
+
+# ------------------------------------
+
+echo
+dla dsp-local-status

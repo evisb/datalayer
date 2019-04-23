@@ -1,0 +1,10 @@
+{
+    "go.docsTool": "gogetdoc",
+    "go.toolsEnvVars": {
+        "GO111MODULE": "on"
+    },
+    "go.inferGopath": false,
+    "go.formatTool": "goimports",
+    "python.pythonPath": "/opt/datalayer/opt/miniconda3/envs/datalayer/bin/python",
+    "restructuredtext.confPath": "${workspaceFolder}/repos/jupyter-ipywidgets/docs/source"
+}

@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+# Licensed to Datalayer (https://datalayer.io) under one or more
+# contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership. Datalayer licenses this file
+# to you under the Apache License, Version 2.0 (the 
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+echo -e $BOLD$YELLOW"Installing Kubectl"$NOCOLOR$NOBOLD
+echo
+
+install_on_linux() {
+    curl -Lo /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl \
+        && chmod +x /usr/local/bin/kubectl
+    echo
+}
+
+install_on_macos() {
+    curl -Lo /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl \
+        && chmod +x /usr/local/bin/kubectl
+    echo
+}
+
+case "${OS}" in
+    LINUX)     install_on_linux;;
+    MACOS)     install_on_macos;;
+    *)         echo "Unsupported operating system ${OS}"
+esac
+
+dla kubectl-help

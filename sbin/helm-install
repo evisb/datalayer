@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+# Licensed to Datalayer (https://datalayer.io) under one or more
+# contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership. Datalayer licenses this file
+# to you under the Apache License, Version 2.0 (the 
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+echo -e $BOLD$YELLOW"Installing Helm..."$NOCOLOR$NOBOLD
+echo
+
+deploy_on_k8s() {
+    # Set up a ServiceAccount for use by Tiller, the server side component of helm.
+    kubectl -n kube-system create sa tiller
+    # Give the ServiceAccount RBAC full permissions to manage the cluster.
+    # While most clusters have RBAC enabled and you need this line, you must skip this step if your kubernetes cluster does not have RBAC enabled (for example, if you are using Azure AKS).
+    kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
+    # Set up Helm on the cluster.
+    helm init --service-account tiller
+   # Ensure that tiller is secure from access inside the cluster.
+    kubectl --namespace=kube-system patch deployment tiller-deploy --type=json --patch='[{"op": "add", "path": "/spec/template/spec/containers/0/command", "value": ["/tiller", "--listen=localhost:44134"]}]'
+}
+
+install_helm_on_linux() {
+    curl -Lo /tmp/helm-v2.9.0-rc3-linux-amd64.tar.gz https://storage.googleapis.com/kubernetes-helm/helm-v2.9.0-rc3-linux-amd64.tar.gz \
+        && tar xvfz /tmp/helm-v2.9.0-rc3-linux-amd64.tar.gz -C /tmp \
+        && mv /tmp/linux-amd64/helm /usr/local/bin \
+        && chmod +x /usr/local/bin/helm
+    deploy_on_k8s
+}
+
+install_helm_on_macos() {
+    curl -Lo /tmp/helm-v2.9.0-rc3-darwin-amd64.tar.gz https://storage.googleapis.com/kubernetes-helm/helm-v2.9.0-rc3-darwin-amd64.tar.gz \
+        && tar xvfz /tmp/helm-v2.9.0-rc3-darwin-amd64.tar.gz -C /tmp \
+        && mv /tmp/darwin-amd64/helm /usr/local/bin \
+        && chmod +x /usr/local/bin/helm
+    deploy_on_k8s
+}
+
+case "${OS}" in
+    LINUX)     install_helm_on_linux;;
+    MACOS)     install_helm_on_macos;;
+    *)         echo "Unsupported operating system ${OS}"
+esac
+
+# You can verify that you have the correct version and that it installed properly by running:
+helm version

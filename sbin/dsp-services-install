@@ -1,0 +1,412 @@
+#!/usr/bin/env bash
+
+# Licensed to Datalayer (https://datalayer.io) under one or more
+# contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership. Datalayer licenses this file
+# to you under the Apache License, Version 2.0 (the 
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+echo -e $BOLD$YELLOW"Installing Datalayer Service"$NOCOLOR$NOBOLD
+echo
+
+cd $DLAHOME/etc/helm
+
+function heapster() {
+  helm install \
+    heapster \
+    --namespace kube-system \
+    -n heapster
+}
+
+function k8s-dashboard() {
+  cd $DLAHOME/etc/helm && helm install \
+    k8s-dashboard \
+    --namespace kube-system \
+    --set=httpPort=3000,resources.limits.cpu=200m,rbac.create=true \
+    -n k8s-dashboard
+}
+
+function etcd() {
+  helm install \
+    etcd \
+    --set StorageClass=gp2 \
+    -n etcd-kuber
+}
+
+function hdfs() {
+  helm install \
+    hdfs \
+    --set imagePullPolicy=Always \
+    --set persistence.nameNode.enabled=true \
+    --set persistence.nameNode.storageClass=gp2 \
+    --set persistence.dataNode.enabled=true \
+    --set persistence.dataNode.storageClass=gp2 \
+    --set hdfs.dataNode.replicas=3 \
+    -n hdfs
+}
+
+function spark() {
+  helm install \
+    spark \
+    --set spark.imagePullPolicy=Always \
+    -n spark
+}
+
+function zeppelin() {
+
+  helm install \
+    zeppelin \
+    --set zeppelin.hostNetwork=false \
+    --set zeppelin.imagePullPolicy=Always \
+    --set zeppelin.notebookRepo=https://github.com/datalayer/notebook-init.git \
+    -n zeppelin
+
+  cat << EOF | kubectl apply -f -
+apiVersion: v1
+kind: Service
+metadata:
+  name: zeppelin-lb
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: zeppelin
+    release: zeppelin
+EOF
+
+  cat << EOF | kubectl apply -f -
+apiVersion: v1
+kind: Service
+metadata:
+  name: zeppelin-spark-ui-lb
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 4040
+  selector:
+    app: zeppelin
+    release: zeppelin
+EOF
+
+echo """
+# Check HDFS
+
+  kubectl exec -it hdfs-hdfs-hdfs-nn-0 -- hdfs dfsadmin -report
+
+# Run K8S Proxy
+
+  kubectl proxy
+
+# Browse Dashboard
+
+  http://localhost:8001/api/v1/namespaces/kube-system/services/http:k8s-dashboard-kubernetes-dashboard:/proxy/#!/overview?namespace=_all
+
+# Browse Zeppelin
+
+  http://localhost:8001/api/v1/namespaces/default/services/http:zeppelin-zeppelin:8080/proxy
+"
+
+}
+
+function explorer() {
+
+  echo "
+  
+# Before running the next step, check the LoadBalancer Ingress value for \`zeppelin-lb\` (rerun in a few minutes if no hostname is shown)
+
+   kubectl describe services zeppelin-lb | grep Ingress
+"
+  kubectl describe services zeppelin-lb
+  echo
+  kubectl describe services zeppelin-lb | grep Ingress
+  echo
+  echo "Please enter the hostname created for the zeppelin-lb:"
+  read ZEPPELIN_LB_HOSTNAME
+  echo
+  echo "You entered: $ZEPPELIN_LB_HOSTNAME"
+  echo
+  echo "We will now deploy Kuber Board..."
+  echo
+
+  helm install \
+    --set explorer.hostNetwork=false \
+    --set explorer.imagePullPolicy="Always" \
+    --set google.apiKey="$DATALAYER_GOOGLE_API_KEY" \
+    --set google.clientId="$DATALAYER_GOOGLE_CLIENT_ID" \
+    --set google.redirect="" \
+    --set google.secret="$DATALAYER_GOOGLE_SECRET" \
+    --set google.scope="profile email https://www.googleapis.com/auth/contacts.readonly https://www.googleapis.com/auth/user.emails.read" \
+    --set hdfs="" \
+    --set kuber.insecureBindAddress="0.0.0.0" \
+    --set kuber.insecurePort="9091" \
+    --set kuber.manageReservations="true" \
+    --set kuber.rest="" \
+    --set kuber.ui="" \
+    --set kuber.ws="" \
+    --set microsoft.applicationId="$DATALAYER_MICROSOFT_APPLICATION_ID" \
+    --set microsoft.redirect="" \
+    --set microsoft.secret="$DATALAYER_MICROSOFT_SECRET" \
+    --set microsoft.scope="User.ReadBasic.All" \
+    --set zeppelin.rest="http://$ZEPPELIN_LB_HOSTNAME" \
+    --set zeppelin.ws="ws://$ZEPPELIN_LB_HOSTNAME" \
+    --set twitter.consumerKey="$DATALAYER_TWITTER_CONSUMER_KEY" \
+    --set twitter.consumerSecret="$DATALAYER_TWITTER_CONSUMER_SECRET" \
+    --set twitter.redirect="" \
+    explorer \
+    -n explorer
+
+  cat << EOF | kubectl apply -f -
+apiVersion: v1
+kind: Service
+metadata:
+  name: explorer-lb
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout: 3600
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 9091
+  selector:
+    app: explorer
+    release: explorer
+EOF
+
+  echo "
+
+# Run K8S Proxy
+
+  kubectl proxy
+
+# Browse Kuber
+
+  http://localhost:8001/api/v1/namespaces/default/services/http:kuber-kuber:9091/proxy
+
+# Check the LoadBalancer Ingress value for \`explorer-lb\` (rerun in a few minutes if no hostname is shown)
+
+   kubectl describe services explorer-lb | grep Ingress
+"
+  kubectl describe services explorer-lb
+  echo
+  kubectl describe services explorer-lb | grep Ingress
+  echo
+
+}
+
+function cert-manager() {
+
+  export COMMON_NAME=$COMMON_NAME
+  export DNS_NAME=$DNS_NAME
+
+  openssl genrsa -out ca.key 2048
+  openssl req -x509 -new -nodes -key ca.key -subj "/CN=${COMMON_NAME}" -days 3650 -out ca.crt
+  kubectl create secret tls issuer-key --cert=ca.crt --key=ca.key --namespace kube-system
+
+  helm install \
+    cert-manager \
+    --name cert-manager \
+    --namespace kube-system
+
+#  cat << EOF | kubectl apply -f -
+# apiVersion: certmanager.k8s.io/v1alpha1
+# kind: Issuer
+# metadata:
+#   name: ca-issuer
+#   namespace: default
+# spec:
+#   ca:
+#     secretName: issuer-key
+# EOF
+
+#   cat << EOF | kubectl apply -f -
+# apiVersion: certmanager.k8s.io/v1alpha1
+# kind: Certificate
+# metadata:
+#   name: explorer-ca-cert
+#   namespace: default
+# spec:
+#   secretName: explorer-ca-tls
+#   issuerRef:
+#     name: ca-issuer
+#     kind: Issuer
+#   commonName: "${COMMON_NAME}"
+#   dnsNames:
+#   - "${DNS_NAME}"
+# EOF
+
+#   kubectl get secret explorer-ca-tls -o yaml
+#   kubectl describe certificate explorer-ca-cert
+
+  cat << EOF | kubectl apply -f -
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: ClusterIssuer
+metadata: 
+  name: letsencrypt-clusterissuer
+  namespace: kube-system
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: eric@datalayer.io
+    privateKeySecretRef:
+      name: issuer-key
+    http01: {}
+#     dns01:
+#      providers:
+#       - name: route53
+#         route53:
+#           accessKeyID: xxx
+#           region: eu-central-1
+#           secretAccessKeySecretRef:
+#             name: route53-secret-key
+#             key: aws-id-secret
+EOF
+
+}
+
+function cert() {
+
+  export DNS_NAME=$DNS_NAME
+  export COMMON_NAME=$COMMON_NAME
+
+  cat << EOF | kubectl apply -f -
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: explorer-cert
+  namespace: default
+spec:
+  secretName: explorer-cert
+  issuerRef:
+    name: letsencrypt-clusterissuer
+    kind: ClusterIssuer
+  commonName: "${COMMON_NAME}"
+  acme:
+    config:
+    - http01:
+        ingressClass: nginx
+      domains:
+      - "${DNS_NAME}"
+#    - dns01:
+#        provider: route53
+EOF
+
+  kubectl describe certificate explorer-cert
+  kubectl get secret explorer-cert -o yaml
+}
+
+function ingress() {
+
+  helm install ingress \
+    -f ingress/values-ssl-aws.yaml \
+    -n ingress
+
+  cat << EOF | kubectl apply -f -
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: explorer
+  namespace: default
+  annotations:
+#     "certmanager.k8s.io/issuer": "letsencrypt-issuer"
+#     "certmanager.k8s.io/clusterissuer": "letsencrypt-clusterissuer"
+#     "certmanager.k8s.io/acme-challenge-type": "http01"
+spec:
+   tls:
+     - hosts:
+       - "${DNS_NAME}"
+       secretName: explorer-cert
+  rules:
+  - host: "${DNS_NAME}"
+    http:
+      paths:
+      - path: /zeppelin
+        backend:
+          serviceName: zeppelin-zeppelin
+          servicePort: 8080
+      - path: /kuber
+        backend:
+          serviceName: explorer-explorer
+          servicePort: 9091
+      - path: /
+        backend:
+          serviceName: explorer-explorer
+          servicePort: 9091
+EOF
+
+}
+
+function options() {
+  echo "Valid options are: heapster | k8s-dashboard | etcd | hdfs | spark | zeppelin | explorer | cert-manager | cert | ingress" 1>&2
+}
+
+CMD="$1"
+if [ -z "$CMD" ]; then
+  echo "No command to execute has been provided." 1>&2  
+  options
+  exit 1
+fi
+
+case "$CMD" in
+
+  heapster)
+    heapster
+    ;;
+
+  k8s-dashboard)
+    k8s-dashboard
+    ;;
+
+  etcd)
+    etcd
+    ;;
+
+  hdfs)
+    hdfs
+    ;;
+
+  spark)
+    spark
+    ;;
+
+  zeppelin)
+    zeppelin
+    ;;
+
+  explorer)
+    explorer
+    ;;
+
+  cert-manager)
+    cert-manager
+    ;;
+
+  cert)
+    cert
+    ;;
+
+  ingress)
+    ingress
+    ;;
+
+  *)
+    echo "Unknown command: $CMD" 1>&2
+    echo
+    options
+    echo
+    exit 1
+
+esac

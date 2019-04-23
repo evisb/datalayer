@@ -1,0 +1,94 @@
+#!/usr/bin/env bash
+
+# Licensed to Datalayer (https://datalayer.io) under one or more
+# contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership. Datalayer licenses this file
+# to you under the Apache License, Version 2.0 (the 
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+echo -e $BOLD$YELLOW"Installing Minikube"$NOCOLOR$NOBOLD
+echo
+
+install_on_linux() {
+
+    echo 'For Linux, install kvm2 driver.'
+    echo
+    echo Ensure you have libvirt and qemu-kvm on your system...
+    echo Debian/Ubuntu: sudo apt install libvirt-clients libvirt-daemon-system qemu-kvm
+    echo Fedora/CentOS/RHEL: sudo yum install libvirt-daemon-kvm qemu-kvm
+    echo
+
+    echo "Add yourself to the libvirt group so you don't need to sudo"
+    # NOTE: For older Debian/Ubuntu versions change the group to `libvirtd`
+    sudo usermod -a -G libvirt $(whoami)
+    echo Update your current session for the group change to take effect
+    echo NOTE: For older Debian/Ubuntu versions change the group to libvirtd
+    echo sudo newgrp libvirt && exit
+    echo sudo chown -R $USER:libvirt /var/run/libvirt
+    echo
+
+    echo -e "Installing docker-machine-driver-kvm2"
+    echo
+    curl -LO https://storage.googleapis.com/minikube/releases/latest/docker-machine-driver-kvm2 \
+      && sudo install docker-machine-driver-kvm2 /usr/local/bin \
+      && rm docker-machine-driver-kvm2
+    echo
+
+    export MINIKUBE_VERSION=0.30.0
+    echo -e "Installing minikube ${MINIKUBE_VERSION} into /usr/local/bin"
+    echo
+    curl -Lo /usr/local/bin/minikube https://storage.googleapis.com/minikube/releases/v${MINIKUBE_VERSION}/minikube-linux-amd64 \
+        && chmod +x /usr/local/bin/minikube
+    echo
+
+}
+
+install_on_macos() {
+
+    echo 'Removing dhcpd_leases'
+    echo
+    sudo rm /var/db/dhcpd_leases
+    echo
+
+    echo "For MacOs, install hyperkit driver."
+    echo
+    curl -Lo docker-machine-driver-hyperkit https://storage.googleapis.com/minikube/releases/latest/docker-machine-driver-hyperkit \
+        && chmod +x docker-machine-driver-hyperkit \
+        && sudo cp docker-machine-driver-hyperkit /usr/local/bin/ \
+        && rm docker-machine-driver-hyperkit \
+        && sudo chown root:wheel /usr/local/bin/docker-machine-driver-hyperkit \
+        && sudo chmod u+s /usr/local/bin/docker-machine-driver-hyperkit
+    echo
+
+    # export MINIKUBE_VERSION=0.24.1
+    # export MINIKUBE_VERSION=0.27.0
+    export MINIKUBE_VERSION=0.29.0
+    # export MINIKUBE_VERSION=0.30.0
+    echo -e "Installing minikube ${MINIKUBE_VERSION} into /usr/local/bin"
+    echo
+    curl -Lo /usr/local/bin/minikube https://storage.googleapis.com/minikube/releases/v${MINIKUBE_VERSION}/minikube-darwin-amd64 \
+        && chmod +x /usr/local/bin/minikube
+    echo
+
+}
+
+DLA_SKIP_HEADER=true dla minikube-delete || true
+
+case "${OS}" in
+    LINUX)     install_on_linux;;
+    MACOS)     install_on_macos;;
+    *)         echo "Unsupported operating system ${OS}"
+esac
+
+DLA_SKIP_HEADER=true dla minikube-help "$@"

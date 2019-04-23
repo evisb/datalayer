@@ -1,0 +1,17 @@
+---
+title: Visual Studio Code
+---
+
+# Visual Studio Code
+
++ https://github.com/microsoft/vscode
++ https://code.visualstudio.com
+
+## Inline
+
++ https://github.com/Microsoft/vscode/issues/3220
++ https://github.com/Microsoft/vscode/issues/10680
+
+## Extensions
+
++ https://github.com/DonJayamanne/vscodejupyter

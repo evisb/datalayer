@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+# Licensed to Datalayer (https://datalayer.io) under one or more
+# contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership. Datalayer licenses this file
+# to you under the Apache License, Version 2.0 (the 
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+echo
+echo -e $GREEN$BOLD"Hadoop HDFS Help"$NOCOLOR$NOBOLD$NOCOLOR
+echo
+echo -e $YELLOW"dla hdfs dfs -ls /"$NOCOLOR
+echo
+echo -e $YELLOW"dla hdfs dfsadmin -safemode leave"$NOCOLOR" (if needeed !!!)"
+echo
+
+# echo -e "Namenode                     "$YELLOW"http://localhost:9864"$NOCOLOR
+# echo -e "Namenode Browser             "$YELLOW"http://localhost:9864/explorer.html"$NOCOLOR
+# echo -e "Datanode                     "$YELLOW"http://localhost:50075"$NOCOLOR
+# echo -e "Datanode Logs                "$YELLOW"http://localhost:50075/logs"$NOCOLOR
+# echo -e "Secondary Namenode           "$YELLOW"http://localhost:50090"$NOCOLOR
+echo -e "Namenode                     "$YELLOW"http://localhost:9870"$NOCOLOR
+echo -e "Namenode Browser             "$YELLOW"http://localhost:9870/explorer.html"$NOCOLOR
+echo -e "Datanode                     "$YELLOW"http://localhost:9864"$NOCOLOR
+echo -e "Datanode Logs                "$YELLOW"http://localhost:9864/logs"$NOCOLOR
+echo -e "Secondary Namenode           "$YELLOW"http://localhost:9868"$NOCOLOR
+echo
+
+echo -e "WEB HDFS"
+echo -e "curl -i http://localhost:9870/webhdfs/v1/?op=LISTSTATUS"
+echo -e "curl -i http://localhost:9870/webhdfs/v1/tmp?user.name=datalayer&op=GETFILESTATUS"
+echo -e "curl -i -X PUT http://localhost:9870/webhdfs/v1/tmp2?user.name=datalayer&op=MKDIRS"
+echo -e "curl -i -X PUT http://localhost:9870/webhdfs/v1/tmp/webhdfs/webhdfs-test.txt?user.name=datalayer&op=CREATE"
+echo -e "curl -i -T webhdfs-test.txt http://localhost:9870/webhdfs/v1/tmp/webhdfs/webhdfs-test.txt?op=CREATE&user.name=datalayer&overwrite=false"
+echo -e "curl -i -L http://localhost:9870/webhdfs/v1/tmp/webhdfs/webhdfs-test.txt?op=OPEN&user.name=datalayer"
+echo -e "curl -i -X PUT http://localhost:9870/webhdfs/v1/tmp/webhdfs?op=RENAME&user.name=datalayer&destination=/tmp/webhdfs-new"
+echo -e "curl -i -X DELETE http://localhost:9870/webhdfs/v1/tmp/webhdfs-new?op=DELETE&user.name=datalayer"
+echo -e "curl -i -X DELETE http://localhost:9870/webhdfs/v1/tmp/webhdfs-new/webhdfs-test.txt?op=DELETE&user.name=datalayer"
+echo -e "curl -i -X DELETE http://localhost:9870/webhdfs/v1/tmp/webhdfs-new?op=DELETE&user.name=datalayer&destination=/tmp/webhdfs-new"
+echo
