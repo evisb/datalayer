@@ -67,9 +67,9 @@ export default class User extends React.Component<any, any> {
               Twenty-something years old software addict. Likes also sports, movies, books, music and friends.
             </div>
             <div style={{flexDirection: 'row', paddingTop: 20}}>
-                <SignalField before={<NewSignal/>}>algo</SignalField>
-                <SignalField before={<NewSignal/>} style={{paddingLeft: 10}}>eda</SignalField>
-                <SignalField before={<NewSignal/>} style={{paddingLeft: 10}}>math</SignalField>
+              <SignalField before={<NewSignal/>}>algo</SignalField>
+              <SignalField before={<NewSignal/>} style={{paddingLeft: 10}}>eda</SignalField>
+              <SignalField before={<NewSignal/>} style={{paddingLeft: 10}}>math</SignalField>
           </div>
         </div>
         <div>

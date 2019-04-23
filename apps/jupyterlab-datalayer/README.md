@@ -61,7 +61,7 @@ cd $DLAHOME/repos/jupyterlab && \
 jupyter notebook list
 ```
 
-In case of issue (version mismatch...), try:
+In case of issue (version mismatch...), try.
 
 ```bash
 jupyter lab clean
