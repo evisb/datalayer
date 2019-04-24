@@ -107,14 +107,14 @@ k8s-cluster-api-gcp|https://github.com/datalayer-contrib/k8s-cluster-api-gcp.git
 k8s-cluster-api-ssh|https://github.com/datalayer-contrib/k8s-cluster-api-ssh.git|https://github.com/samsung-cnct/cluster-api-provider-ssh.git|master \
 k8s-dashboard|https://github.com/datalayer-contrib/k8s-dashboard.git|https://github.com/kubernetes/dashboard.git|master \
 k8s-dex|https://github.com/datalayer-contrib/k8s-dex.git|https://github.com/dexidp/dex.git|master \
+k8s-kubicorn|https://github.com/datalayer-contrib/k8s-kubicorn.git|https://github.com/kubicorn/kubicorn.git|master \
+k8s-kubicorn-bootstrap|https://github.com/datalayer-contrib/k8s-kubicorn-bootstrap.git|https://github.com/kubicorn/bootstrap.git|master \
+k8s-kubicorn-controller|https://github.com/datalayer-contrib/k8s-kubicorn-controller.git|https://github.com/kubicorn/controller.git|master \
 k8s-spark-operator|https://github.com/datalayer-contrib/k8s-spark-operator.git|https://github.com/GoogleCloudPlatform/spark-on-k8s-operator.git|master \
 kubeflow-examples|https://github.com/datalayer-contrib/kubeflow-examples.git|https://github.com/kubeflow/examples.git|master \
 kubeflow|https://github.com/datalayer-contrib/kubeflow.git|https://github.com/kubeflow/kubeflow.git|master \
 kubeflow-kvc|https://github.com/datalayer-contrib/kubeflow-kvc.git|https://github.com/IntelAI/vck.git|master \
 kubeflow-tf-operator|https://github.com/datalayer-contrib/kubeflow-tf-operator.git|https://github.com/kubeflow/tf-operator.git|master \
-kubicorn|https://github.com/datalayer-contrib/kubicorn.git|https://github.com/kubicorn/kubicorn.git|master \
-kubicorn-bootstrap|https://github.com/datalayer-contrib/kubicorn-bootstrap.git|https://github.com/kubicorn/bootstrap.git|master \
-kubicorn-controller|https://github.com/datalayer-contrib/kubicorn-controller.git|https://github.com/kubicorn/controller.git|master \
 nteract|https://github.com/datalayer-contrib/nteract.git|https://github.com/nteract/nteract.git|master \
 nteract-data-explorer|https://github.com/datalayer-contrib/nteract-data-explorer.git|https://github.com/benrussert/data-explorer.git|master \
 nteract-hydrogen|https://github.com/datalayer-contrib/nteract-hydrogen.git|https://github.com/nteract/hydrogen.git|master \
