@@ -42,7 +42,7 @@ jupyter labextension install jupyterlab_voyager
 cd $DLAHOME/repos/jupyterlab-git
 pip install -e . --upgrade
 jupyter serverextension enable --py jupyterlab_git --sys-prefix
-jupyter labextension link
+jupyter labextension link .
 ```
 
 ```bash

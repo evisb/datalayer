@@ -136,8 +136,8 @@ install_jupyterlab() {
     pip install -e .
     jupyter serverextension enable --py jupyterlab --sys-prefix
     yarn install
-    yarn clean
-    yarn install
+#    yarn clean
+#    yarn install
     cd $DLAHOME/repos/jupyterlab/packages/cells
     yarn install
     yarn build
@@ -152,7 +152,7 @@ install_jupyterlab() {
     rm -fr lib || true
     yarn install
     yarn build
-    make jupyter-lab-ext-enable
+    make ext-enable
 
 #    jupyter lab build
 

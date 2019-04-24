@@ -19,14 +19,13 @@
 
 export DLA_REPOS_ORIGIN_REMOTE="
 airflow|https://github.com/datalayer-contrib/airflow.git|https://github.com/apache/airflow.git|master \
-airflow-operator|https://github.com/datalayer-contrib/airflow-operator.git|https://github.com/GoogleCloudPlatform/airflow-operator.git|master \
 binderhub|https://github.com/datalayer-contrib/binderhub.git|https://github.com/jupyterhub/binderhub.git|master \
 binderhub-deploy|https://github.com/datalayer-contrib/binderhub-deploy.git|https://github.com/jupyterhub/mybinder.org-deploy.git|master \
 binderhub-docs|https://github.com/datalayer-contrib/binderhub-docs.git|https://github.com/jupyterhub/binder.git|master \
 blog|https://github.com/datalayer/blog.git|https://github.com/datalayer/blog.git|master \
 blueprint-js|https://github.com/datalayer-contrib/blueprint-js.git|https://github.com/palantir/blueprint.git|develop \
 data8-datascience|https://github.com/datalayer-contrib/data8-datascience.git|https://github.com/data-8/datascience.git|master \
-data8-materials-fa17|https://github.com/datalayer-contrib/data8-materials-fa17.git|https://github.com/data-8/materials-fa17.git|master \
+data8-course-2017|https://github.com/datalayer-contrib/data8-course-2017.git|https://github.com/data-8/materials-fa17.git|master \
 fabric-ui|https://github.com/datalayer-contrib/fabric-ui.git|https://github.com/officedev/office-ui-fabric-react.git|master \
 hadoop|https://github.com/datalayer-contrib/hadoop.git|https://github.com/apache/hadoop.git|trunk \
 hbase|https://github.com/datalayer-contrib/hbase.git|https://github.com/apache/hbase.git|master \
@@ -96,6 +95,7 @@ jupyterlab-toastify|https://github.com/datalayer-contrib/jupyterlab-toastify.git
 jupyterlab-toc|https://github.com/datalayer-contrib/jupyterlab-toc.git|https://github.com/jupyterlab/jupyterlab-toc.git|master \
 jupyterlab-voyager|https://github.com/datalayer-contrib/jupyterlab-voyager.git|https://github.com/altair-viz/jupyterlab_voyager.git|master \
 jupyterlab-xkcd|https://github.com/datalayer-contrib/jupyterlab-xkcd.git|https://github.com/jupyterlab/jupyterlab_xkcd.git|0.32 \
+k8s-airflow-operator|https://github.com/datalayer-contrib/k8s-airflow-operator.git|https://github.com/GoogleCloudPlatform/airflow-operator.git|master \
 k8s-ark|https://github.com/datalayer-contrib/k8s-ark.git|https://github.com/heptio/ark.git|master \
 k8s-ark-plugin-example|https://github.com/datalayer-contrib/k8s-ark-plugin-example.git|https://github.com/heptio/ark-plugin-example.git|master \
 k8s-aws-authenticator|https://github.com/datalayer-contrib/k8s-aws-authenticator.git|https://github.com/kubernetes-sigs/aws-iam-authenticator.git|master \
@@ -107,6 +107,7 @@ k8s-cluster-api-gcp|https://github.com/datalayer-contrib/k8s-cluster-api-gcp.git
 k8s-cluster-api-ssh|https://github.com/datalayer-contrib/k8s-cluster-api-ssh.git|https://github.com/samsung-cnct/cluster-api-provider-ssh.git|master \
 k8s-dashboard|https://github.com/datalayer-contrib/k8s-dashboard.git|https://github.com/kubernetes/dashboard.git|master \
 k8s-dex|https://github.com/datalayer-contrib/k8s-dex.git|https://github.com/dexidp/dex.git|master \
+k8s-spark-operator|https://github.com/datalayer-contrib/k8s-spark-operator.git|https://github.com/GoogleCloudPlatform/spark-on-k8s-operator.git|master \
 kubeflow-examples|https://github.com/datalayer-contrib/kubeflow-examples.git|https://github.com/kubeflow/examples.git|master \
 kubeflow|https://github.com/datalayer-contrib/kubeflow.git|https://github.com/kubeflow/kubeflow.git|master \
 kubeflow-kvc|https://github.com/datalayer-contrib/kubeflow-kvc.git|https://github.com/IntelAI/vck.git|master \
@@ -126,7 +127,6 @@ papermill-scrapbook|https://github.com/datalayer-contrib/papermill-scrapbook.git
 spark|https://github.com/datalayer-contrib/spark.git|https://github.com/apache/spark.git|master \
 spark-hbase|https://github.com/datalayer-contrib/spark-hbase-connector.git|https://github.com/hortonworks-spark/shc.git|master \
 spark-kafka|https://github.com/datalayer-contrib/spark-kafka-connector.git|https://github.com/hortonworks-spark/skc.git|master \
-spark-operator|https://github.com/datalayer-contrib/spark-operator.git|https://github.com/GoogleCloudPlatform/spark-on-k8s-operator.git|master \
 spark-solr|https://github.com/datalayer-contrib/spark-solr.git|https://github.com/lucidworks/spark-solr.git|master \
 zeppelin|https://github.com/datalayer-contrib/zeppelin.git|https://github.com/apache/zeppelin.git|master \
 ";

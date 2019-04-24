@@ -55,8 +55,12 @@ cd $DLAHOME/apps/jupyterlab-datalayer && \
 cd $DLAHOME/apps/jupyterlab-datalayer && \
   make watch
 # shell #2 - run and watch jupyter lab.
-cd $DLAHOME/repos/jupyterlab && \
-  jupyter lab --watch --browser chromium-browser # --dev-mode 
+  # --dev-mode \
+cd $DLAHOME/apps/jupyterlab-datalayer && \
+  jupyter lab \
+    --watch \
+    --browser chromium-browser \
+    --config ./jupyter_notebook_config.py
 # shell #3 - list the notebooks.
 jupyter notebook list
 ```

@@ -84,6 +84,14 @@ RUN cd $REPOS_FOLDER \
     && jupyter serverextension enable --py jupyterlab_git --sys-prefix \
     && jupyter labextension link --no-build
 
+RUN cd $REPOS_FOLDER \
+    && git clone --depth 1 https://github.com/datalayer-contrib/jupyterlab-github.git --depth 1 \
+    && cd jupyterlab-github \
+#    && git checkout datalayer \
+    && pip install -e . \
+    && jupyter serverextension enable --py jupyterlab_github --sys-prefix \
+    && jupyter labextension link --no-build
+
 # RUN cd $REPOS_FOLDER \
 #     && git clone --depth 1 https://github.com/datalayer-contrib/jupyterlab-github.git --depth 1 \
 #     && cd jupyterlab-github \
