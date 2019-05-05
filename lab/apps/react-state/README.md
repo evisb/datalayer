@@ -10,3 +10,11 @@ State Management with react.js with a [todo-mvc](./todo-mvc), built with [react-
 + Hook with [easy-peasy](https://github.com/ctrlplusb/easy-peasy), [codesandbox](https://codesandbox.io/s/woyn8xqk15).
 
 See also [constate](https://github.com/diegohaz/constate) as alternative to `redux` ([codesandbox](https://codesandbox.io/s/github/diegohaz/constate/tree/master/examples/counter)).
+
+## Others
+
++ Pass state between components: https://github.com/zeyadetman/howmanybooks
++ Communicating with Iframes.
+ + https://medium.com/@ebakhtarov/handling-of-iframes-in-react-f038be46ac24
+ + https://medium.com/@ariel.salem1989/communicating-with-iframes-712fdc2b4d14
+ + https://gist.github.com/pbojinov/8965299

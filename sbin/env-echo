@@ -52,7 +52,8 @@ then
   echo -e "MAVEN_HOME="$MAVEN_HOME
   echo -e "DLA_CLASSPATH="$DLA_CLASSPATH
   echo -e "DLA_CLASSPATH_FILE="$DLA_CLASSPATH_FILE
-  mvn -v
+#  echo
+#  mvn -v
   echo -e ""
   echo -e "DLA_PORT="$DLA_PORT
   echo -e ""

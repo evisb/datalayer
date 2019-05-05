@@ -23,6 +23,8 @@ http://catalog.data.gov/dataset
 
 https://open-data.europa.eu
 
+https://opendata.infrabel.be
+
 https://www.springboard.com/blog/free-public-data-sets-data-science-project
 
 UCI Machine Learning Repository: This is a collection of almost 300 datasets of various types and sizes for tasks including classification, regression, clustering, and recommender systems. The list is available at http://archive.ics.uci.edu/ml

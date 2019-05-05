@@ -34,6 +34,9 @@ clean:
 install:
 	python setup.py install --record files.txt
 
+dev:
+	python setup.py develop
+
 build:
 	python setup.py sdist bdist_egg bdist_wheel
 

@@ -17,7 +17,7 @@
 # specific language governing permissions and limitations
 # under the License.
 
-echo -e $BOLD$YELLOW"Installing Datalayer on Local Environment"$NOCOLOR$NOBOLD
+echo -e $BOLD$YELLOW"Installing Datalayer on Environment"$NOCOLOR$NOBOLD
 echo
 
 # ------------------------------------
@@ -50,7 +50,7 @@ macos_pre() {
 conda deactivate
 rm -fr $DLAOPT/miniconda3/envs/datalayer
 conda remove --yes --all --name datalayer
-conda config --add channels conda-forge
+# conda config --add channels conda-forge
 conda env create -n datalayer -f $DLAHOME/conda.yml
 conda activate datalayer
 conda env list
@@ -80,7 +80,8 @@ rm -fr ~/.jupyter
 
 # ------------------------------------
 
-sudo npm install -g configurable-http-proxy
+# sudo npm install -g configurable-http-proxy
+npm install configurable-http-proxy
 
 # ------------------------------------
 
@@ -136,12 +137,11 @@ install_jupyterlab() {
     pip install -e .
     jupyter serverextension enable --py jupyterlab --sys-prefix
     yarn install
-#    yarn clean
-#    yarn install
     cd $DLAHOME/repos/jupyterlab/packages/cells
     yarn install
     yarn build
-    jupyter lab build
+
+#    jupyter lab build
 
     cd $DLAHOME/repos/jupyterlab-server
     pip install -e .
@@ -152,24 +152,44 @@ install_jupyterlab() {
     rm -fr lib || true
     yarn install
     yarn build
+    make py-install
     make ext-enable
 
-#    jupyter lab build
+    jupyter lab build
 
 }
 
 install_jupyterlab
 
-install_explorer() {
+# ------------------------------------
 
-    cd $DLAHOME/apps/ui && \
+install_iam() {
+    cd $DLAHOME/apps/iam && \
     make clean && \
-    make build
+    make build && \
+    make dev
 }
 
-install_explorer
+install_iam
 
 # ------------------------------------
 
-echo
-dla dsp-local-status
+install_library() {
+    cd $DLAHOME/apps/library && \
+    make clean && \
+    make build && \
+    make dev
+}
+
+install_library
+
+# ------------------------------------
+
+install_ui() {
+    cd $DLAHOME/apps/ui && \
+    make clean && \
+    make build && \
+    make dev
+}
+
+install_ui

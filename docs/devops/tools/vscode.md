@@ -15,3 +15,7 @@ title: Visual Studio Code
 ## Extensions
 
 + https://github.com/DonJayamanne/vscodejupyter
+
+## Jupyter
+
++ https://code.visualstudio.com/docs/python/jupyter-support
