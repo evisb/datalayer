@@ -96,8 +96,6 @@ jupyterlab-toc|https://github.com/datalayer-contrib/jupyterlab-toc.git|https://g
 jupyterlab-voyager|https://github.com/datalayer-contrib/jupyterlab-voyager.git|https://github.com/altair-viz/jupyterlab_voyager.git|master \
 jupyterlab-xkcd|https://github.com/datalayer-contrib/jupyterlab-xkcd.git|https://github.com/jupyterlab/jupyterlab_xkcd.git|0.32 \
 k8s-airflow-operator|https://github.com/datalayer-contrib/k8s-airflow-operator.git|https://github.com/GoogleCloudPlatform/airflow-operator.git|master \
-k8s-ark|https://github.com/datalayer-contrib/k8s-ark.git|https://github.com/heptio/ark.git|master \
-k8s-ark-plugin-example|https://github.com/datalayer-contrib/k8s-ark-plugin-example.git|https://github.com/heptio/ark-plugin-example.git|master \
 k8s-aws-authenticator|https://github.com/datalayer-contrib/k8s-aws-authenticator.git|https://github.com/kubernetes-sigs/aws-iam-authenticator.git|master \
 k8s-aws-quickstart|https://github.com/datalayer-contrib/k8s-aws-quickstart.git|https://github.com/heptio/aws-quickstart.git|master \
 k8s-cluster-api|https://github.com/datalayer-contrib/k8s-cluster-api.git|https://github.com/kubernetes-sigs/cluster-api.git|master \
@@ -111,6 +109,8 @@ k8s-kubicorn|https://github.com/datalayer-contrib/k8s-kubicorn.git|https://githu
 k8s-kubicorn-bootstrap|https://github.com/datalayer-contrib/k8s-kubicorn-bootstrap.git|https://github.com/kubicorn/bootstrap.git|master \
 k8s-kubicorn-controller|https://github.com/datalayer-contrib/k8s-kubicorn-controller.git|https://github.com/kubicorn/controller.git|master \
 k8s-spark-operator|https://github.com/datalayer-contrib/k8s-spark-operator.git|https://github.com/GoogleCloudPlatform/spark-on-k8s-operator.git|master \
+k8s-velero|https://github.com/datalayer-contrib/k8s-velero.git|https://github.com/heptio/velero.git|master \
+k8s-velero-plugin-example|https://github.com/datalayer-contrib/k8s-velero-plugin-example.git|https://github.com/heptio/velero-plugin-example.git|master \
 kubeflow-examples|https://github.com/datalayer-contrib/kubeflow-examples.git|https://github.com/kubeflow/examples.git|master \
 kubeflow|https://github.com/datalayer-contrib/kubeflow.git|https://github.com/kubeflow/kubeflow.git|master \
 kubeflow-kvc|https://github.com/datalayer-contrib/kubeflow-kvc.git|https://github.com/IntelAI/vck.git|master \

@@ -106,7 +106,7 @@ export default class Landing extends React.Component<any, any> {
                 <div className="ms-Grid-col ms-sm8 ms-md8 ms-lg8">
                   <h2 className={ "title" } style={{marginBottom: 20}}>datalayer</h2>
                   <div className={ "tagline" } style={{marginBottom: 10, textAlign: 'left', fontWeight: 'normal'}}>A distributed open science platform.</div>
-                  <div className={ "tagline" } style={{marginBottom: 10, textAlign: 'left', fontWeight: 'normal', maxWidth: 1000}}>Designed for academics and data geeks to write and share their analysis with real dataset and code.</div>
+                  <div className={ "tagline" } style={{marginBottom: 10, textAlign: 'left', fontWeight: 'normal', maxWidth: 1000}}>Designed for academics and data geeks to analyse with real datasets and code.</div>
                   <SearchBoxDla />
                   <div className="ms-Grid" style={{color: 'white', marginTop: 20}}>
                     <div className="ms-Grid-row" style={{paddingBottom: 20}}>

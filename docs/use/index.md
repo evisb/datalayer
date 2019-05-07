@@ -4,9 +4,30 @@ title: User Guide
 
 # User Guide
 
+Datalayer is about `code` on `data`:
+
++ Create analysis project and share it.
++ Search what others have created.
++ Collaborate in teams on research projects.
++ Follow people and discover what they do.
+
 ## Free Account
 
 Go to the [signup](https://datalayer.io/join) page and create your personal free account. You will need a valid email address to confirm your account.
+
+## Project
+
+You are now ready to create your first project. Give your project `tags` so it can be found easily.
+
+You can add on your project:
+
++ Datasets.
++ Notebooks.
++ APIS.
+
+The `Datasets` and `Notebooks` are stored on the `public IPFS`.
+
+You will have the option to make them `private`.
 
 ## Notebook
 

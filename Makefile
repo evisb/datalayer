@@ -40,8 +40,8 @@ env: env-base
 	SLUGIFY_USES_TEXT_UNIDECODE=yes conda env create -n datalayer -f ${DLAHOME}/conda.yml
 	make env-status
 
-env-dsp:
-	@exec ./bin/dla env-dsp
+env-make-dsp:
+	@exec ./bin/dla env-make-dsp
 	make env-status
 
 clean:

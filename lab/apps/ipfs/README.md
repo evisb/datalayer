@@ -9,7 +9,7 @@ cd $GOPATH/src/github.com/ipfs/go-ipfs
 make install
 ```
 
-## Gateways
+## Gateway
 
 https://www.cloudflare.com/distributed-web-gateway
 

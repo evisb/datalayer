@@ -113,7 +113,7 @@ export default class Header extends React.Component<any, HeaderState> {
                   DATALAYER
                 </div>
                 <div style={{fontSize: 'small'}}>
-                  data.for.everyone
+                  code.on.data
                 </div>
               </div>
             </div>

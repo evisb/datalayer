@@ -60,6 +60,10 @@ pip install mkdocs-material
 pip install git+https://github.com/notpushkin/mkdocs-alabaster
 ```
 
+## Ghost
+
+https://github.com/tryghost/ghost
+
 ## Docusaurus
 
 https://docusaurus.io

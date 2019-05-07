@@ -77,11 +77,21 @@ server-ext-enable: py-build
 	@exec jupyter serverextension enable --py jupyterlab_datalayer --sys-prefix
 	@exec jupyter serverextension list
 
+server-ext-disable:
+	@exec jupyter serverextension disable --py jupyterlab_datalayer --sys-prefix
+	@exec jupyter serverextension list
+
 lab-ext-enable: yarn-build
 	@exec jupyter labextension link .
 	@exec jupyter labextension list
 
+lab-ext-disable:
+	@exec jupyter labextension unlink .
+	@exec jupyter labextension list
+
 ext-enable: server-ext-enable lab-ext-enable
+	
+ext-disable: server-ext-disable lab-ext-disable
 	
 dist: build
 	@exec ./dev/make-dist.sh

@@ -17,7 +17,7 @@
 # specific language governing permissions and limitations
 # under the License.
 
-echo -e $BOLD$YELLOW"Installing Datalayer on Environment"$NOCOLOR$NOBOLD
+echo -e $BOLD$YELLOW"Installing DSP Environment"$NOCOLOR$NOBOLD
 echo
 
 # ------------------------------------
@@ -46,14 +46,13 @@ macos_pre() {
 
 # ------------------------------------
 
-. $DLAOPT/miniconda3/etc/profile.d/conda.sh
-conda deactivate
-rm -fr $DLAOPT/miniconda3/envs/datalayer
-conda remove --yes --all --name datalayer
-# conda config --add channels conda-forge
-conda env create -n datalayer -f $DLAHOME/conda.yml
-conda activate datalayer
-conda env list
+# . $DLAOPT/miniconda3/etc/profile.d/conda.sh
+# conda deactivate
+# rm -fr $DLAOPT/miniconda3/envs/datalayer
+# conda remove --yes --all --name datalayer
+# conda env create -n datalayer -f $DLAHOME/conda.yml
+# conda activate datalayer
+# conda env list
 
 # ------------------------------------
 
@@ -76,14 +75,12 @@ yarn config set cache-folder ~/.yarn-cache
 
 # ------------------------------------
 
-rm -fr ~/.jupyter
-
-# ------------------------------------
-
 # sudo npm install -g configurable-http-proxy
-npm install configurable-http-proxy
+# npm install configurable-http-proxy
 
 # ------------------------------------
+
+rm -fr ~/.jupyter
 
 install_jupyter() {
     cd $DLAHOME/repos/jupyter
@@ -102,7 +99,7 @@ install_jupyterhub() {
 #    rm -fr *.egg-info
 #    python setup.py clean sdist
 #    pip install -e .
-    pip install jupyterhub==0.9.6
+    pip install jupyterhub==1.0.0
 
 #    cd $DLAHOME/repos/jupyterhub-auth-oauth
 #    pip install -e .
@@ -188,8 +185,7 @@ install_library
 install_ui() {
     cd $DLAHOME/apps/ui && \
     make clean && \
-    make build && \
-    make dev
+    make build
 }
 
 install_ui
