@@ -26,10 +26,11 @@ https://ipld.io
 + https://github.com/oscoin/ipfs/tree/master/git-remote-ipfs#install
 + https://github.com/pandonetwork/pando
 
-## Swarm
-
-https://ethereum.stackexchange.com/questions/27591/does-swarm-incorporate-the-git-protocol-like-ipfs-does
-
 ## Spark
 
 [Application: Data Processing Workflows on IPFS](https://github.com/ipfs/ipfs/issues/248).
+
+## Articles
+
++ https://medium.com/textileio/tutorial-setting-up-an-ipfs-peer-part-i-de48239d82e0
++ https://medium.com/textileio/tutorial-setting-up-an-ipfs-peer-part-ii-67a99cd2c5
