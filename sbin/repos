@@ -26,6 +26,7 @@ blog|https://github.com/datalayer/blog.git|https://github.com/datalayer/blog.git
 blueprint-js|https://github.com/datalayer-contrib/blueprint-js.git|https://github.com/palantir/blueprint.git|develop \
 data8-datascience|https://github.com/datalayer-contrib/data8-datascience.git|https://github.com/data-8/datascience.git|master \
 data8-course-2017|https://github.com/datalayer-contrib/data8-course-2017.git|https://github.com/data-8/materials-fa17.git|master \
+docs|https://github.com/datalayer/docs.git|https://github.com/datalayer/docs.git|master \
 fabric-ui|https://github.com/datalayer-contrib/fabric-ui.git|https://github.com/officedev/office-ui-fabric-react.git|master \
 hadoop|https://github.com/datalayer-contrib/hadoop.git|https://github.com/apache/hadoop.git|trunk \
 hbase|https://github.com/datalayer-contrib/hbase.git|https://github.com/apache/hbase.git|master \
