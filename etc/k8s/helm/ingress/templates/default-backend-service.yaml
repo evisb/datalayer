@@ -28,7 +28,7 @@ spec:
 {{- end }}
   ports:
     - port: {{ .Values.defaultBackend.service.servicePort }}
-      targetPort: 8080
+      targetPort: 8092
   selector:
     app: {{ template "nginx-ingress.name" . }}
     component: "{{ .Values.defaultBackend.name }}"

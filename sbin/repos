@@ -26,6 +26,7 @@ blog|https://github.com/datalayer/blog.git|https://github.com/datalayer/blog.git
 blueprint-js|https://github.com/datalayer-contrib/blueprint-js.git|https://github.com/palantir/blueprint.git|develop \
 data8-datascience|https://github.com/datalayer-contrib/data8-datascience.git|https://github.com/data-8/datascience.git|master \
 data8-course-2017|https://github.com/datalayer-contrib/data8-course-2017.git|https://github.com/data-8/materials-fa17.git|master \
+dex|https://github.com/datalayer-contrib/dex.git|https://github.com/dexidp/dex.git|master \
 docs|https://github.com/datalayer/docs.git|https://github.com/datalayer/docs.git|master \
 fabric-ui|https://github.com/datalayer-contrib/fabric-ui.git|https://github.com/officedev/office-ui-fabric-react.git|master \
 hadoop|https://github.com/datalayer-contrib/hadoop.git|https://github.com/apache/hadoop.git|trunk \
@@ -105,7 +106,6 @@ k8s-cluster-api-azure|https://github.com/datalayer-contrib/k8s-cluster-api-azure
 k8s-cluster-api-gcp|https://github.com/datalayer-contrib/k8s-cluster-api-gcp.git|https://github.com/kubernetes-sigs/cluster-api-provider-gcp.git|master \
 k8s-cluster-api-ssh|https://github.com/datalayer-contrib/k8s-cluster-api-ssh.git|https://github.com/samsung-cnct/cluster-api-provider-ssh.git|master \
 k8s-dashboard|https://github.com/datalayer-contrib/k8s-dashboard.git|https://github.com/kubernetes/dashboard.git|master \
-k8s-dex|https://github.com/datalayer-contrib/k8s-dex.git|https://github.com/dexidp/dex.git|master \
 k8s-kubicorn|https://github.com/datalayer-contrib/k8s-kubicorn.git|https://github.com/kubicorn/kubicorn.git|master \
 k8s-kubicorn-bootstrap|https://github.com/datalayer-contrib/k8s-kubicorn-bootstrap.git|https://github.com/kubicorn/bootstrap.git|master \
 k8s-kubicorn-controller|https://github.com/datalayer-contrib/k8s-kubicorn-controller.git|https://github.com/kubicorn/controller.git|master \

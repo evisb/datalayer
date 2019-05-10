@@ -5,20 +5,22 @@ services:
     container_name: keycloak
     networks:
       - datalayer
+#    command:
+#      - -Djboss.http.port=8092
     environment:
       - KEYCLOAK_USER=admin
       - KEYCLOAK_PASSWORD=${DLA_KEYCLOAK_PWD}
+#      - KEYCLOAK_HOSTNAME=${DLAHOST}
       - KEYCLOAK_HTTP_PORT=8080
       - KEYCLOAK_HTTPS_PORT=8443
       - PROXY_ADDRESS_FORWARDING=true
-#      - KEYCLOAK_HOSTNAME=${DLAHOST}
       - DB_VENDOR=mysql
       - DB_ADDR=keycloak-db
       - DB_USER=keycloak
       - DB_PASSWORD=${DLA_KEYCLOAK_DB_PWD}
       - JDBC_PARAMS=useSSL=false # it's needed for mysql 8 -> &allowPublicKeyRetrieval=true
     ports:
-      - 8080:8080
+      - 8092:8080
       - 8443:8443
     volumes:
       - ${DLAHOME}/srv/certs:/etc/x509/https
@@ -29,7 +31,7 @@ services:
       start_period: 10s
     labels:
       - traefik.frontend.rule=Host:${DLAHOST};PathPrefix:/auth
-      - traefik.port=8080
+      - traefik.port=8092
       - traefik.protocol=http
       - traefik.docker.network=datalayer
       - traefik.frontend.passHostHeader=true

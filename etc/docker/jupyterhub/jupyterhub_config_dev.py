@@ -11,8 +11,6 @@ from jupyterhub.utils import url_path_join
 
 from oauthenticator.oauth2 import OAuthLoginHandler, OAuthenticator
 
-
-
 class KeycloakMixin(OAuth2Mixin):
     keycloak_server_host = os.getenv('DLA_KEYCLOAK_SCHEME_HOST')
     _OAUTH_AUTHORIZE_URL = "{}/auth/realms/datalayer/protocol/openid-connect/auth".format(keycloak_server_host)

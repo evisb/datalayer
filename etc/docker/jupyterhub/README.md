@@ -41,9 +41,10 @@ docker stack rm jupyterhub
 
 ```bash
 # start.
-make start && \
+cd $DLAHOME/etc/docker/jupyterhub && \
+  make start && \
   sleep 3s && \
-  open http://localhost:8000
+  open http://localhost:8000/jupyterhub
 ```
 
 ```bash

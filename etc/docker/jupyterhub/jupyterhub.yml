@@ -61,6 +61,5 @@ networks:
   default:
     name: datalayer
   datalayer:
-    name: datalayer
     external: false
     attachable: true

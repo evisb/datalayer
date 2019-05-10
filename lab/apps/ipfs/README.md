@@ -2,8 +2,19 @@
 
 # IPFS Lab
 
+## Community
+
++ https://github.com/ipfs/community
++ [🙌 IPFS Weekly Call + Contributor Office Hours 📡 💫 2019-05-13](https://github.com/ipfs/community/issues/408).
++ [🙌 IPFS Weekly Call + Contributor Office Hours 📡 💫 2019-05-06](https://github.com/ipfs/community/issues/408).
+
++ https://github.com/ipfs/team-mgmt
++ https://github.com/ipfs/team-mgmt/blob/master/IPFS_WEEKLY_CALL.md
+
+## Install
+
 ```bash
-# Install IPFS Service
+# Install IPFS Service.
 go get -u -d github.com/ipfs/go-ipfs
 cd $GOPATH/src/github.com/ipfs/go-ipfs
 make install
@@ -11,11 +22,11 @@ make install
 
 ## Gateway
 
-https://www.cloudflare.com/distributed-web-gateway
++ https://www.cloudflare.com/distributed-web-gateway
 
 ## IPLD
 
-https://ipld.io
++ https://ipld.io
 
 ## Git
 

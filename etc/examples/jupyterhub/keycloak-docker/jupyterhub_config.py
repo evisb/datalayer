@@ -36,10 +36,10 @@ from jupyterhub.utils import url_path_join
 from oauthenticator.oauth2 import OAuthLoginHandler, OAuthenticator
 
 class KeycloakMixin(OAuth2Mixin):
-    _OAUTH_AUTHORIZE_URL = os.getenv('KEYCLOAK_AUTH_URL', "http://localhost:8080/auth/realms/datalayer/protocol/openid-connect/auth")
-    _OAUTH_ACCESS_TOKEN_URL = os.getenv('KEYCLOAK_TOKEN_URL', "http://localhost:8080/auth/realms/datalayer/protocol/openid-connect/token")
-    _OAUTH_LOGOUT_URL = os.getenv('KEYCLOAK_LOGOUT_URL', "http://localhost:8080/auth/realms/datalayer/protocol/openid-connect/logout")
-    _OAUTH_USERINFO_URL = os.getenv('KEYCLOAK_USERINFO_URL', "http://localhost:8080/auth/realms/datalayer/protocol/openid-connect/userinfo")
+    _OAUTH_AUTHORIZE_URL = os.getenv('KEYCLOAK_AUTH_URL', "http://localhost:8092/auth/realms/datalayer/protocol/openid-connect/auth")
+    _OAUTH_ACCESS_TOKEN_URL = os.getenv('KEYCLOAK_TOKEN_URL', "http://localhost:8092/auth/realms/datalayer/protocol/openid-connect/token")
+    _OAUTH_LOGOUT_URL = os.getenv('KEYCLOAK_LOGOUT_URL', "http://localhost:8092/auth/realms/datalayer/protocol/openid-connect/logout")
+    _OAUTH_USERINFO_URL = os.getenv('KEYCLOAK_USERINFO_URL', "http://localhost:8092/auth/realms/datalayer/protocol/openid-connect/userinfo")
 
 class KeycloakLoginHandler(OAuthLoginHandler, KeycloakMixin):
     pass
@@ -136,8 +136,8 @@ c.Authenticator.admin_users = { os.environ['USER'] }
 c.Authenticator.whitelist = set()
 
 # --- Authenticator ---
-# os.environ["OAUTH2_AUTHORIZE_URL"] = "http://localhost:8080/auth/realms/datalayer/protocol/openid-connect/auth"
-# os.environ["OAUTH2_TOKEN_URL"] = "http://localhost:8080/auth/realms/datalayer/protocol/openid-connect/token"
+# os.environ["OAUTH2_AUTHORIZE_URL"] = "http://localhost:8092/auth/realms/datalayer/protocol/openid-connect/auth"
+# os.environ["OAUTH2_TOKEN_URL"] = "http://localhost:8092/auth/realms/datalayer/protocol/openid-connect/token"
 c.JupyterHub.authenticator_class = KeycloakOAuthenticator
 c.KeycloakOAuthenticator.client_id = 'datalayer'
 c.KeycloakOAuthenticator.client_secret = os.getenv('DLA_KEYCLOAK_REALM_CLIENT_SECRET')

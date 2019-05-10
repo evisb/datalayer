@@ -53,7 +53,7 @@ build:
 		.
 
 start:
-	echo open http://localhost:8000
+	echo open http://localhost:8000/jupyterhub
 	@exec docker-compose -f jupyterhub.yml up -d
 
 pull:

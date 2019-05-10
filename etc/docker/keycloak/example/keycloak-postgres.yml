@@ -3,14 +3,6 @@ volumes:
   postgres_data:
     driver: local
 services:
-  postgres:
-    image: postgres:9.5
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    environment:
-      DLA_JUYPYERHUB_POSTGRES_DB: keycloak
-      POSTGRES_USER: keycloak
-      DLA_JUPYTERHUB_DB_PWD: password
   keycloak:
     image: jboss/keycloak:4.4.0.Final
     environment:
@@ -29,3 +21,11 @@ services:
       - 8080:8080
     depends_on:
       - postgres
+  postgres:
+    image: postgres:9.5
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      DLA_JUYPYERHUB_POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      DLA_JUPYTERHUB_DB_PWD: password

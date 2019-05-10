@@ -40,7 +40,7 @@ cd $DLAHOME/apps/kuber && \
 ```bash
 # A running keycloak server integrated with ldap.
 # Create a `datalayer` realm.
-# Create and a `datalayer` client with `Root URL` `http://localhost:8080`.
+# Create and a `datalayer` client with `Root URL` `http://localhost:9700`.
 # Define the `Valid Redirect URIs`.
 #  http://localhost:9700/*
 #  http://localhost:8000/*
@@ -54,23 +54,23 @@ cd $DLAHOME/apps/kuber && \
 #   Bind Credential: `admin`
 #   Cache Policy: `NO_CACHE`
 # and `Synchronize all users`.
-# Check `eric` user login on http://localhost:8080/auth/realms/datalayer/account (password is `123`).
+# Check `eric` user login on http://localhost:8092/auth/realms/datalayer/account (password is `123`).
 dla dsp-swarm-up dev && \
   sleep 3s && \
   dla dsp-swarm-up seed-ldap && \
-  open http://localhost:8080/auth/admin/master/console # admin / admin
+  open http://localhost:8092/auth/admin/master/console # admin / admin
 ```
 
 ## Develop
 
-Run iam, kuber, jupyterhub, library and ui in `dev` mode.
+Run `iam`, `kuber`, `jupyterhub`, `library` and `ui` in `dev` mode with a oneliner.
 
 ```bash
 cd $DLAHOME/apps/ui && \
   make dev
 ```
 
-If you prefer separated processes, ensure you have iam, kuber, library and jupyterhub running.
+If you prefer separated processes, launch them one by one.
 
 ```bash
 # shell #1: start the ui compiler.
