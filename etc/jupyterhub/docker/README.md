@@ -8,14 +8,14 @@ JupyterHub in Docker with Keycloak Authenticator and Docker Spawner.
 
 ```bash
 # build.
-cd $DLAHOME/etc/docker/jupyterhub && \
+cd $DLAHOME/etc/jupyterhub/docker && \
   make check-files && \
   make build
 ```
 
 ```bash
 # with docker compose.
-cd $DLAHOME/etc/docker/jupyterhub
+cd $DLAHOME/etc/jupyterhub/docker
 DLA_KEYCLOAK_HOST=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' keycloak) && \
   echo $DLA_KEYCLOAK_HOST && \
   docker-compose -f jupyterhub.yml up -d
@@ -29,7 +29,7 @@ docker-compose -f jupyterhub.yml down
 ```bash
 # with docker swarm.
 # see also https://github.com/minrk/jupyterhub-swarm
-cd $DLAHOME/etc/docker/jupyterhub
+cd $DLAHOME/etc/jupyterhub/docker
 DLA_KEYCLOAK_HOST=??? && \
   docker stack deploy -c jupyterhub.yml jupyterhub
 docker service ls
@@ -41,7 +41,7 @@ docker stack rm jupyterhub
 
 ```bash
 # start.
-cd $DLAHOME/etc/docker/jupyterhub && \
+cd $DLAHOME/etc/jupyterhub/docker && \
   make start && \
   sleep 3s && \
   open http://localhost:8000/jupyterhub

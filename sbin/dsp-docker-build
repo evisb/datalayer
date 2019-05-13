@@ -21,16 +21,16 @@ echo -e $BOLD$YELLOW"Building Datalayer Docker Images"$NOCOLOR$NOBOLD
 echo
 
 # For HDFS Helm Chart.
-cd $DLAHOME/etc/docker/k8s-sidecar && \
+cd $DLAHOME/etc/k8s-sidecar/docker && \
   ./make build && \
-cd $DLAHOME/etc/docker/hdfs-base && \
+cd $DLAHOME/etc/hdfs-base/docker && \
   ./make build && \
-  cd $DLAHOME/etc/docker/hdfs-dn && \
+  cd $DLAHOME/etc/hdfs-dn/docker && \
   make build && \
-  cd $DLAHOME/etc/docker/hdfs-nn && \
+  cd $DLAHOME/etc/hdfs-nn/docker && \
   ./make build && \
 # For Spark Helm Chart.
-cd $DLAHOME/etc/docker/spark && \
+cd $DLAHOME/etc/spark/docker && \
   ./make build && \
 # For JupyterHub Helm Chart.
 cd $DLAHOME/repos/jupyterhub-proxy-http && \
@@ -38,5 +38,5 @@ cd $DLAHOME/repos/jupyterhub-proxy-http && \
   docker build -t datalayer/jupyterhub-http-proxy:0.0.1 . && \
 cd $DLAHOME/repos/jupyterhub-k8s/images && \
   git checkout datalayer && ./make build && \
-cd $DLAHOME/etc/docker/jupyterlab && \
+cd $DLAHOME/etc/jupyterlab/docker && \
   ./make build

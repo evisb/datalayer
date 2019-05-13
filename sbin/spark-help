@@ -27,7 +27,7 @@ echo
 echo "Other options:"
 echo "--------------"
 echo
-echo "MASTER=yarn HADOOP_CONF_DIR=$DLAHOME/etc/conf/hadoop $SPARK_HOME/bin/spark-shell --packages javax.mail:mail:1.4.5-rc1"
+echo "MASTER=yarn HADOOP_CONF_DIR=$DLAHOME/etc/hadoop/conf $SPARK_HOME/bin/spark-shell --packages javax.mail:mail:1.4.5-rc1"
 echo """
 Users may also include any other dependencies by supplying a comma-delimited list of maven coordinates with --packages.
 All transitive dependencies will be handled when using this command. Additional repositories (or resolvers in SBT) can be added in a comma-delimited fashion with the flag --repositories.

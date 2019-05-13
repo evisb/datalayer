@@ -1,6 +1,6 @@
 """
 
-jupyterhub -f $DLAHOME/etc/examples/jupyterhub/keycloak-docker/jupyterhub_config.py
+jupyterhub -f $DLAHOME/etc/jupyterhub/examples/keycloak-docker/jupyterhub_config.py
 open http://localhost:8000
 
 Working configuration for generic authenticator with Keycloak https://github.com/jupyterhub/oauthenticator/issues/107

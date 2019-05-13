@@ -30,8 +30,8 @@ echo -e $YELLOW"$SOLR_HOME/bin/solr status"$NOCOLOR
 echo
 echo -e "Create a collection"
 echo -e "The create command detects the mode that Solr is running in (standalone or SolrCloud) and then creates a core or collection depending on the mode."
-echo -e $YELLOW"$SOLR_HOME/bin/solr create -c demo -shards 2 -replicationFactor 2 -d $DLAHOME/etc/conf/solr/demo -p 8983"$NOCOLOR
-echo -e $YELLOW"$SOLR_HOME/bin/solr create_collection -c demo -shards 1 -replicationFactor 1 -d $DLAHOME/etc/conf/solr/demo -p 8983"$NOCOLOR
+echo -e $YELLOW"$SOLR_HOME/bin/solr create -c demo -shards 2 -replicationFactor 2 -d $DLAHOME/etc/solr/conf/demo -p 8983"$NOCOLOR
+echo -e $YELLOW"$SOLR_HOME/bin/solr create_collection -c demo -shards 1 -replicationFactor 1 -d $DLAHOME/etc/solr/conf/demo -p 8983"$NOCOLOR
 echo
 echo -e "Delete a collection"
 echo -e $YELLOW"$SOLR_HOME/bin/solr delete -c demo"$NOCOLOR

@@ -189,7 +189,7 @@ export ZOOKEEPER_HOME=$DLAOPT/zookeeper-$ZOOKEEPER_VERSION
 export PATH=$ZOOKEEPER_HOME/bin:$PATH
 
 if [ -z "$ZOOKEEPER_CONF_FILE" ]; then
-  export ZOOKEEPER_CONF_FILE=$DLAHOME/etc/conf/zookeeper/zoo.cfg
+  export ZOOKEEPER_CONF_FILE=$DLAHOME/etc/zookeeper/conf/zoo.cfg
 fi
 
 export ZOOKEEPER_CONF_DIR=$DLAHOME/etc/conf/zookeeper
@@ -209,9 +209,9 @@ export HADOOP_VERSION=3.1.0
 export HADOOP_HOME=$DLAOPT/hadoop-$HADOOP_VERSION
 # export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
 # export HADOOP_CONF_DIR=/etc/hadoop/conf
-export HADOOP_CONF_DIR=$DLAHOME/etc/conf/hadoop
+export HADOOP_CONF_DIR=$DLAHOME/etc/hadoop/conf
 export DLA_HADOOP_DATA_DIR=$DLAHOME/var/hadoop
-export DLA_HADOOP_CONF_TEMPLATE_DIR=$DLAHOME/etc/template/hadoop
+export DLA_HADOOP_CONF_TEMPLATE_DIR=$DLAHOME/etc/hadoop/template
 
 # export HADOOP_CLASSPATH=$DLAOPT/hadoop-lzo/build/hadoop-lzo-0.4.17-SNAPSHOT.jar:$HADOOP_CLASSPATH
 # export JAVA_LIBRARY_PATH=/usr/local/lzo-2.06/lib:/o/hadoop-lzo/build/native/???linux???/lib:$JAVA_LIBRARY_PATH
@@ -235,10 +235,10 @@ then
     fi
     if [ -z "$HADOOP_CONF_DIR" ]
     then
-      export HADOOP_CONF_DIR=$DLAHOME/etc/conf/hadoop
+      export HADOOP_CONF_DIR=$DLAHOME/etc/hadoop/conf
       if [ "$DLA_SECURITY" == "kerberos" ]
       then
-        export DLA_HADOOP_CONF_TEMPLATE_DIR=$DLAHOME/etc/template/hadoop-kerberos
+        export DLA_HADOOP_CONF_TEMPLATE_DIR=$DLAHOME/etc/hadoop/template/kerberos
       fi
       datalayer hadoop-conf-generate
     fi
@@ -306,9 +306,9 @@ export HBASE_HOME=$DLAOPT/hbase-$HBASE_VERSION
 #   export HBASE_HOME=$DLAOPT/hbase-$HBASE_VERSION
 # fi
 export PATH=$HBASE_HOME/bin:$PATH
-export HBASE_CONF_DIR=$DLAHOME/etc/conf/hbase
+export HBASE_CONF_DIR=$DLAHOME/etc/hbase/conf
 # if [ -z "$HBASE_CONF_DIR" ]; then
-#  export HBASE_CONF_DIR=$DLAHOME/etc/conf/hbase
+#  export HBASE_CONF_DIR=$DLAHOME/etc/hbase/conf
 # fi
 
 # Tell HBase whether it should manage its own instance of Zookeeper or not.
@@ -318,7 +318,7 @@ export HBASE_MANAGES_ZK=false
 
 export PATH=$HBASE_HOME/bin:$PATH
 
-export DLA_HBASE_CONF_TEMPLATE_DIR=$DLAHOME/etc/template/hbase
+export DLA_HBASE_CONF_TEMPLATE_DIR=$DLAHOME/etc/hbase/template
 
 # ------------------------------------
 
@@ -335,7 +335,7 @@ export PATH=$LUKE_HOME/bin:$PATH
 export SOLR_VERSION=7.6.0
 export SOLR_HOME=$DLAOPT/solr-$SOLR_VERSION
 export PATH=$SOLR_HOME/bin:$PATH
-export SOLR_CONF_DIR=$DLAHOME/etc/conf/solr
+export SOLR_CONF_DIR=$DLAHOME/etc/solr/conf
 
 # ------------------------------------
 

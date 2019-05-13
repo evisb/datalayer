@@ -20,7 +20,7 @@
 echo -e $BOLD$YELLOW"Serving Helm Repository..."$NOCOLOR$NOBOLD
 echo
 
-cd $DLAHOME/etc/helm
+cd $DLAHOME/etc
 
 for chart in */ ; do
   helm package "$chart" .

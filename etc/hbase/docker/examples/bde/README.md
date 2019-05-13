@@ -4,7 +4,7 @@
 
 ```bash
 # https://github.com/big-data-europe/docker-hbase
-cd $DLAHOME/etc/docker/hbase/examples/bde/repo && \
+cd $DLAHOME/etc/hbase/docker/examples/bde/repo && \
 # docker-compose -f docker-compose-standalone.yml up -d && \
   docker-compose -f docker-compose-distributed-local.yml up -d && \
   docker ps && \
@@ -14,7 +14,7 @@ docker-compose -f docker-compose-distributed-local.yml down
 
 ```bash
 # https://github.com/big-data-europe/docker-hbase/tree/master/distributed
-cd $DLAHOME/etc/docker/hbase/examples/bde/repo/distributed && \
+cd $DLAHOME/etc/hbase/docker/xamples/bde/repo/distributed && \
 #  docker swarm init && \
 #  docker network create -d overlay hbase && \
   make hadoop && \

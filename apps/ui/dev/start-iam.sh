@@ -27,7 +27,7 @@ echo -e "\x1b[34m\x1b[43mStarting IAM\x1b[0m"
 #   make start
 
 # Option 2 - Run with docker.
-# cd $DLAHOME/etc/docker/iam && \
+# cd $DLAHOME/etc/iam/docker && \
 #   open http://localhost:9700/iam && \
 #   make start
 

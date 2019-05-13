@@ -23,6 +23,6 @@ echo
 source dsp-docker
 
 # Tail logs.
-cd $DLAHOME/etc/docker/swarm && \
+cd $DLAHOME/etc && \
   docker service logs \
     "$@"

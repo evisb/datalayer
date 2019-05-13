@@ -20,7 +20,7 @@
 echo -e $BOLD$YELLOW"Installing Datalayer Service"$NOCOLOR$NOBOLD
 echo
 
-cd $DLAHOME/etc/helm
+cd $DLAHOME/etc
 
 function heapster() {
   helm install \
@@ -30,7 +30,7 @@ function heapster() {
 }
 
 function k8s-dashboard() {
-  cd $DLAHOME/etc/helm && helm install \
+  cd $DLAHOME/etc && helm install \
     k8s-dashboard \
     --namespace kube-system \
     --set=httpPort=3000,resources.limits.cpu=200m,rbac.create=true \

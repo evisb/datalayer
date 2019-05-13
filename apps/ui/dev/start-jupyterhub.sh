@@ -22,20 +22,20 @@
 echo -e "\x1b[34m\x1b[43mStarting JupyterHub\x1b[0m"
 
 start_dev() {
-  cd $DLAHOME/etc/docker/jupyterhub && \
+  cd $DLAHOME/etc/jupyterhub/docker && \
     make start-dev
 }
 
 start_local() {
   open http://localhost:8000/jupyterhub && \
     jupyterhub -f \
-      $DLAHOME/etc/examples/jupyterhub/keycloak-docker/jupyterhub_config.py
+      $DLAHOME/etc/jupyterhub/examples/keycloak-docker/jupyterhub_config.py
 }
 
 start_with_docker() {
 #   docker-compose -f jupyterhub.yml up -d && \
 #   open http://localhost:8000/jupyterhub
-  cd $DLAHOME/etc/docker/jupyterhub && \
+  cd $DLAHOME/etc/jupyterhub/docker && \
     docker-compose -f jupyterhub.yml up
 # docker logs jupyterhub -f
 # docker-compose -f jupyterhub.yml down

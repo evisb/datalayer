@@ -23,7 +23,7 @@ echo
 source dsp-docker
 
 # Tail logs.
-cd $DLAHOME/etc/swarm && \
+cd $DLAHOME/etc && \
   docker-compose \
     $DOCKER_SERVICES_COMPOSE \
     logs -f \

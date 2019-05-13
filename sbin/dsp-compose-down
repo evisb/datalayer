@@ -22,7 +22,7 @@ echo
 
 source dsp-docker
 
-cd $DLAHOME/etc/swarm && \
+cd $DLAHOME/etc && \
   docker-compose \
     $DOCKER_SERVICES_COMPOSE \
     down \

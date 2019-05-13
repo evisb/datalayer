@@ -27,7 +27,7 @@ function deploy() {
   tar xvfz $DLAOPT/hbase-*-bin.tar.gz -C $DLAOPT
   ln -s $DLAOPT/hbase-2.0.0 $DLAOPT/hbase
 #  cd $HBASE_HOME/bin
-#  cp $DLAHOME/etc/conf/hbase/hbase-site.xml $HBASE_HOME/conf
+#  cp $DLAHOME/etc/hbase/conf/hbase-site.xml $HBASE_HOME/conf
 
   echo -e $YELLOW
   echo -e "Set JAVA_HOME in bin/hbase-config.sh and/or conf/hbase-env.sh - if this does not work, set it also in start-hbase.sh (to e.g. $DLAOPT/jdk)"

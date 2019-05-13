@@ -48,7 +48,7 @@ then
   export ZEPPELIN_WAR=$ZEPPELIN_HOME/zeppelin-web/dist
 fi
 
-export ZEPPELIN_NOTEBOOK_DIR=$DLAHOME/etc/examples/zeppelin/$NOTEBOOK_NAME
+export ZEPPELIN_NOTEBOOK_DIR=$DLAHOME/etc/zeppelin/examples/$NOTEBOOK_NAME
 export ZEPPELIN_CONF_DIR=$ZEPPELIN_NOTEBOOK_DIR/_conf
 
 export ZEPPELIN_SERVER_CONTEXT_PATH=/zeppelin

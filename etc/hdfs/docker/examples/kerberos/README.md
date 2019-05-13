@@ -5,7 +5,7 @@
 ```bash
 # https://github.com/ifilonenko/hadoop-kerberos
 # deprecates https://github.com/ifilonenko/hadoop-base
-cd $DLAHOME/etc/docker/hdfs/examples/kerberos/repo && \
+cd $DLAHOME/etc/hdfs/docker/examples/kerberos/repo && \
   curl -Lo hadoop-2.7.3.tar.gz https://archive.apache.org/dist/hadoop/core/hadoop-2.7.3/hadoop-2.7.3.tar.gz
 docker network create com
 docker volume rm hadoopkerberos_server-keytab

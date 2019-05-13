@@ -29,7 +29,7 @@ elif [ "$1" == "seed" ]; then
 fi
 
 echo $SERVICES 
-cd $DLAHOME/etc/swarm && \
+cd $DLAHOME/etc && \
   docker-compose \
     $SERVICES \
     push

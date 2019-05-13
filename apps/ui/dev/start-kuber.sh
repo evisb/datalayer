@@ -27,7 +27,7 @@ echo -e "\x1b[34m\x1b[43mStarting Kuber\x1b[0m"
 #   make start
 
 # Option 2 - Run with docker.
-# cd $DLAHOME/etc/docker/kuber && \
+# cd $DLAHOME/etc/kuber/docker && \
 #   make start && \
 #   sleep 3s && \
 #   open http://localhost:9091/kuber/about/kuber.html

@@ -4,7 +4,7 @@
 
 ```bash
 # https://github.com/big-data-europe/docker-hadoop/tree/2.0.0-hadoop3.1.1-java8
-cd $DLAHOME/etc/docker/hdfs/examples/bde/repo && \
+cd $DLAHOME/etc/hdfs/docker/examples/bde/repo && \
 #  docker stack deploy -c docker-compose-v3.yml hadoop
   docker-compose up -d && \
   docker ps && \

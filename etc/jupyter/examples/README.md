@@ -22,13 +22,13 @@ conda activate jupyter && \
 ```bash
 # simple configuration.
 conda activate jupyter && \
-  jupyter notebook --config $DLAHOME/etc/examples/jupyter/simple/jupyter_notebook_config.py
+  jupyter notebook --config $DLAHOME/etc/jupyter/examples/simple/jupyter_notebook_config.py
 ```
 
 ```bash
 # base-url configuration.
 conda activate jupyter && \
-  jupyter notebook --config $DLAHOME/etc/examples/jupyter/base-url/jupyter_notebook_config.py
+  jupyter notebook --config $DLAHOME/etc/jupyter/examples/base-url/jupyter_notebook_config.py
 ```
 
 ## Usage

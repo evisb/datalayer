@@ -23,42 +23,42 @@ DOCKER_VOLUME="
 "
 
 DOCKER_SERVICES_FILE_BASE="
-  DLA keycloak.yml
-  DLA ldap.yml
-  DLA ldap-admin.yml
-  DLA solr.yml
-  DLA network.yml
-  DLA traefik.yml
-  DLA whoami.yml
-  DLA zk.yml
+  DLA keycloak/swarm/keycloak.yml
+  DLA ldap/swarm/ldap.yml
+  DLA ldap-admin/swarm/ldap-admin.yml
+  DLA sorl/swarm/solr.yml
+  DLA network/swarm/network.yml
+  DLA network/swarm/traefik.yml
+  DLA whoami/swarm/whoami.yml
+  DLA zookeeper/swarm/zookeeper.yml
 "
 
 DOCKER_SERVICES_FILE_DEV="
-  DLA keycloak.yml
-  DLA ldap.yml
-  DLA ldap-admin.yml
-  DLA solr.yml
-  DLA network.yml
-  DLA traefik.yml
-  DLA zk.yml
+  DLA keycloak/swarm/keycloak.yml
+  DLA ldap/swarm/ldap.yml
+  DLA ldap-admin/swarm/ldap-admin.yml
+  DLA sorl/swarm/solr.yml
+  DLA network/swarm/network.yml
+  DLA network/swarm/traefik.yml
+  DLA zookeeper/swarm/zookeeper.yml
 "
 
 DOCKER_SERVICES_FILE="
-  DLA apis.yml
-  DLA iam.yml
-  DLA jupyterhub.yml
-  DLA keycloak.yml
-  DLA kuber.yml
-  DLA library.yml
-  DLA ldap.yml
-  DLA ldap-admin.yml
-  DLA network.yml
-  DLA solr.yml
-  DLA traefik.yml
-  DLA ui.yml
-  DLA viz.yml
-  DLA whoami.yml
-  DLA zk.yml
+  DLA apis/swarm/apis.yml
+  DLA iam/swarm/iam.yml
+  DLA jupyterhub/swarm/jupyterhub.yml
+  DLA keycloak/swarm/keycloak.yml
+  DLA kuber/swarm/kuber.yml
+  DLA library/swarm/library.yml
+  DLA ldap/swarm/ldap.yml
+  DLA ldap-admin/swarm/ldap-admin.yml
+  DLA network/swarm/network.yml
+  DLA solr/swarm/solr.yml
+  DLA traefik/swarm/traefik.yml
+  DLA ui/swarm/ui.yml
+  DLA viz/swarm/viz.yml
+  DLA whoami/swarm/whoami.yml
+  DLA zookeeper/swarm/zookeeper.yml
 "
 
 DOCKER_SERVICES_COMPOSE_BASE="${DOCKER_SERVICES_FILE_BASE//DLA/-f}"
