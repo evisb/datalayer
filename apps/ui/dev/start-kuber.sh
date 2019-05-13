@@ -18,10 +18,14 @@
 # under the License.
 
 # A running kuber server.
+
+echo -e "\x1b[34m\x1b[43mStarting Kuber\x1b[0m"
+
 # Option 1 - Run from source.
 # cd $DLAHOME/apps/kuber && \
 #   open http://localhost:9091/kuber/about/kuber.html && \
 #   make start
+
 # Option 2 - Run with docker.
 # cd $DLAHOME/etc/docker/kuber && \
 #   make start && \

@@ -17,6 +17,8 @@
 # specific language governing permissions and limitations
 # under the License.
 
+echo -e "\x1b[34m\x1b[43mStarting UI\x1b[0m"
+
 cd $DLAHOME/apps/ui && \
   DLA_UI_INDEX_PAGE=index.html && \
   open http://localhost:3000/?kuberRest=http://localhost:9091 && \

@@ -17,6 +17,8 @@
 # specific language governing permissions and limitations
 # under the License.
 
+echo -e "\x1b[34m\x1b[43mCopying static assets to AWS S3\x1b[0m"
+
 aws s3 cp $DLAHOME/apps/ui/build/static s3://datalayer/static --recursive
 aws s3 cp $DLAHOME/apps/ui/build/img s3://datalayer/img --recursive
 

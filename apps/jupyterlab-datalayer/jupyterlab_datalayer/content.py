@@ -17,11 +17,11 @@ class ContentHandler(BaseHandler):
         body = tornado.escape.json_decode(self.request.body)
         path = body['path']
         contents_manager = self.settings['contents_manager']
-        n = contents_manager.get(path)
-        logging.info('Notebook: {}'.format(n))
-        logging.info('Notebook Content: {}'.format(n['content']))
+        notebook = contents_manager.get(path)
+        logging.info('Notebook: {}'.format(notebook))
+        logging.info('Notebook Content: {}'.format(notebook['content']))
         text = []
-        for cell in n['content']['cells']:
+        for cell in notebook['content']['cells']:
             logging.info('--- {}'.format(cell))
             if 'source' in cell and 'cell_type' in cell:
                 if cell['cell_type'] == 'code' or cell['cell_type'] == 'markdown':

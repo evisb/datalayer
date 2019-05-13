@@ -19,6 +19,8 @@
 
 # A running jupyterhub server.
 
+echo -e "\x1b[34m\x1b[43mStarting JupyterHub\x1b[0m"
+
 start_dev() {
   cd $DLAHOME/etc/docker/jupyterhub && \
     make start-dev

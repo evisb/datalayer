@@ -17,7 +17,6 @@ Showcase user interface widget `toolkits` and `theming` with `react.js` and `typ
 Some `transversal` useful topics.
 
 + [CSS-in-JS](./css-in-js) with react.js.
-+ [IPFS](./ipfs).
 + [Medias](./medias) generation such as PNG, SVG...
 + [State Management](./react-state) with react.js.
 + [Styleguidist](./styleguidist).
