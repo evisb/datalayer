@@ -246,8 +246,11 @@
   padding-bottom: 40px !important;
   position: relative;
   align-items: center;  
+//  background-color: #333;
+  background-color: $color-components-darker;
 //  background-image: url('https://images.unsplash.com/photo-1552055915-8df9421f0b08?auto=format&fit=crop&w=1000&h=500');
-  background-image: url('https://images.unsplash.com/photo-1550438496-8c6e269e7886?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&fit=crop&w=2000&h=1000&q=80');
+//  background-image: url('https://images.unsplash.com/photo-1550438496-8c6e269e7886?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&fit=crop&w=2000&h=1000&q=80');
+  background-image: url('/img/background/background-5.svg');
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;

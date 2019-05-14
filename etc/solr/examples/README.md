@@ -1,11 +1,11 @@
 [![Datalayer](https://docs.datalayer.io/logo/datalayer-25.svg)](https://datalayer.io)
 
-# Solr Lab
+# Solr Examples
 
 [Solr Tutorial](https://lucene.apache.org/solr/guide/7_6/solr-tutorial.html).
 
 ```bash
-cd $DLAHOME/lab/apps/solr && \
+cd $DLAHOME/etc/solr/examples && \
   docker-compose -f solr.yml up -d && \
   dla solr-help && \
 #  docker-compose -f solr.yml logs -f solr && \

@@ -26,9 +26,9 @@ DOCKER_SERVICES_FILE_BASE="
   DLA keycloak/swarm/keycloak.yml
   DLA ldap/swarm/ldap.yml
   DLA ldap-admin/swarm/ldap-admin.yml
-  DLA sorl/swarm/solr.yml
+  DLA solr/swarm/solr.yml
   DLA network/swarm/network.yml
-  DLA network/swarm/traefik.yml
+  DLA traefik/swarm/traefik.yml
   DLA whoami/swarm/whoami.yml
   DLA zookeeper/swarm/zookeeper.yml
 "
@@ -37,9 +37,9 @@ DOCKER_SERVICES_FILE_DEV="
   DLA keycloak/swarm/keycloak.yml
   DLA ldap/swarm/ldap.yml
   DLA ldap-admin/swarm/ldap-admin.yml
-  DLA sorl/swarm/solr.yml
   DLA network/swarm/network.yml
-  DLA network/swarm/traefik.yml
+  DLA solr/swarm/solr.yml
+  DLA traefik/swarm/traefik.yml
   DLA zookeeper/swarm/zookeeper.yml
 "
 
@@ -54,9 +54,9 @@ DOCKER_SERVICES_FILE="
   DLA ldap-admin/swarm/ldap-admin.yml
   DLA network/swarm/network.yml
   DLA solr/swarm/solr.yml
+  DLA swarm/swarm/visualizer.yml
   DLA traefik/swarm/traefik.yml
   DLA ui/swarm/ui.yml
-  DLA viz/swarm/viz.yml
   DLA whoami/swarm/whoami.yml
   DLA zookeeper/swarm/zookeeper.yml
 "

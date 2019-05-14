@@ -40,6 +40,5 @@ Authenticate and authorize with various providers.
 
 #### :tent: Others
 
-+ [Solr](./solr) indexing and search example.
 + [OpenAPI](./open-api) (aka swagger) example.
 + Serverless deployment with [Now.sh](./now-sh).

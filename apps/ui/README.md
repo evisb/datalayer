@@ -57,7 +57,7 @@ cd $DLAHOME/apps/kuber && \
 # Check `eric` user login on http://localhost:8092/auth/realms/datalayer/account (password is `123`).
 dla dsp-swarm-up dev && \
   sleep 3s && \
-  dla dsp-swarm-up seed-ldap && \
+  dla dsp-swarm-up seed_ldap && \
   open http://localhost:8092/auth/admin/master/console # admin / admin
 ```
 

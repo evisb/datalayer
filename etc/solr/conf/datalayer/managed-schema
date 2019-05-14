@@ -118,7 +118,7 @@
          If you don't need it, consider removing it and the corresponding copyField directive.
     -->
 
-    <!-- Datalayer Definitions START -->
+    <!-- Datalayer Definition START -->
 
     <field name="id" type="string" indexed="true" stored="true" required="true" multiValued="false" />
     <field name="user_username" type="string" indexed="true" stored="true" required="true" multiValued="false" />
@@ -135,7 +135,7 @@
     <field name="tweet_capture_height" type="float" indexed="true" stored="true" required="false" multiValued="false" />
     <field name="date" type="date" indexed="false" stored="true" required="false" multiValued="false" />
 
-    <!-- Datalayer Definitions END -->
+    <!-- Datalayer Definition END -->
 
     <field name="_version_" type="long" indexed="true" stored="false"/>
     <field name="_root_" type="string" indexed="true" stored="false" docValues="false" />

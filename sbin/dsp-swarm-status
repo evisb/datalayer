@@ -39,7 +39,7 @@ docker stack ls
 docker stack ps datalayer
 docker stack service ls
 docker stack services datalayer
-docker service ps --no-trunc <service>
+echo 'docker service ps --no-trunc <service>'
 echo
 
 echo -e $YELLOW"""

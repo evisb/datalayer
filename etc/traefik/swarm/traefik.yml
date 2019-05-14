@@ -21,7 +21,7 @@ services:
       - 8089:8089
     volumes:
       - /etc/letsencrypt:/certs/letsencrypt
-      - ${DLAHOME}/etc/conf/traefik/${DLAHOST}.toml:/traefik.toml
+      - ${DLAHOME}/etc/traefik/conf/${DLAHOST}.toml:/traefik.toml
       - /var/run/docker.sock:/var/run/docker.sock
 #    labels:
 #      - traefik.frontend.rule=Host:${DLAHOST};Path:/dashboard/
