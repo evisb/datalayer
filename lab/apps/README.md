@@ -21,14 +21,12 @@ Some `transversal` useful topics.
 + [State Management](./react-state) with react.js.
 + [Styleguidist](./styleguidist).
 + [Typedoc](./typedoc).
-+ [Webpack](./webpack) minimal config (with java/node.js interactions).
++ [Webpack](./webpack) minimal configuration (with java/node.js interactions).
 
 #### :passport_control: Authentication and Authorization
 
 Authenticate and authorize with various providers.
 
-+ [LDAP](./ldap) interactions.
-+ [Federation with Keycloak](./keycloak), a `OAuth 2.0` and `OpenID Connect` provider.
 + [OAuth1 with Twitter](./oauth1-twitter) API.
 
 #### :moyai: Integration with External Systems API

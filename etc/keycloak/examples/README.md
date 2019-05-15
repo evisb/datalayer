@@ -1,9 +1,11 @@
 [![Datalayer](https://docs.datalayer.io/logo/datalayer-25.svg)](https://datalayer.io)
 
-# Keycloak Lab
+# Keycloak Examples
+
+Federation with Keycloak, a `OAuth 2.0` and `OpenID Connect` provider.
 
 ```bash
-cd $DLAHOME/lab/apps/keycloak && \
+cd $DLAHOME/etc/keycloak/examples && \
   docker-compose -f keycloak.yml up -d && \
   docker-compose -f keycloak.yml ps && \
   sleep 3s && \
