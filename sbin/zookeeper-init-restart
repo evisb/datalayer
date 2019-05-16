@@ -17,5 +17,6 @@
 # specific language governing permissions and limitations
 # under the License.
 
-DLA_SKIP_HEADER=true dla zk-stop
-DLA_SKIP_HEADER=true dla zk-start
+DLA_SKIP_HEADER=true dla zookeeper-stop
+DLA_SKIP_HEADER=true dla zookeeper-init
+DLA_SKIP_HEADER=true dla zookeeper-start

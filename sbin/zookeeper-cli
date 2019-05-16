@@ -17,6 +17,10 @@
 # specific language governing permissions and limitations
 # under the License.
 
-DLA_SKIP_HEADER=true dla zk-stop
-DLA_SKIP_HEADER=true dla zk-init
-DLA_SKIP_HEADER=true dla zk-start
+echo -e $YELLOW$BOLD"Starting Apache Zookeeper CLI"$NOBOLD$NOCOLOR
+echo
+
+DLA_SKIP_HEADER=true dla zookeeper-help
+
+$ZOOKEEPER_HOME/bin/zkCli.sh -server localhost:2181
+echo

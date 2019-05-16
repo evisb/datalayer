@@ -12,26 +12,31 @@
 ```bash
 # https://github.com/django-haystack/pysolr
 pip install pysolr kazoo simplejson
+```
+
+```bash
 export DEBUG_PYSOLR=true
 ```
 
 ```python
 import pysolr
-pysolr.ZooKeeper.CLUSTER_STATE = '/collections/demo/state.json'
-pysolr.ZooKeeper.CLUSTER_STATE = '/collections/datalayer/state.json'
-# For SolrCloud mode, initialize your Solr like this:
-zookeeper = pysolr.ZooKeeper("zk:2181")
-# solr = pysolr.SolrCloud(zookeeper, "datalayer", results_cls=dict, always_commit=True)
-solr = pysolr.SolrCloud(zookeeper, "demo", always_commit=True)
-solr = pysolr.SolrCloud(zookeeper, "datalayer", always_commit=True)
+# For SolrCloud mode, set ZooKeeper state first...
+# collection = 'datalayer'
+collection = 'demo'
+pysolr.ZooKeeper.CLUSTER_STATE = '/collections/{}/state.json'.format(collection)
+zookeeper = pysolr.ZooKeeper("zookeeper:2181")
+solr = pysolr.SolrCloud(zookeeper, collection, always_commit=True)
+# solr = pysolr.SolrCloud(zookeeper, "datalayer", always_commit=True)
 # Setup a Solr instance. The timeout is optional.
 # solr = pysolr.Solr('http://localhost:8983/solr/', timeout=10)
 # Do a health check.
 solr.ping() # In dev source code.
 # How you'd index data.
-solr.add([{
+solr.add(
+    [{
         "id": "doc_1",
         "title": "A test document",
+        "type": "parent",
         "tweet_id": "asdf",
         "tweet_text": "asdf",
         "tweet_capture_bin": "dGVzdA==",
@@ -39,6 +44,7 @@ solr.add([{
     {
         "id": "doc_2",
         "title": "The Banana: Tasty or Dangerous?",
+        "type": "parent",
         "tweet_id": "asdf",
         "tweet_text": "asdf",
         "tweet_capture_bin": "dGVzdA==",
@@ -46,15 +52,17 @@ solr.add([{
             { 
                 "id": "child_doc_1", 
                 "title": "peel",
-                "tweet_id": "asdf",
-                "tweet_text": "asdf",
+                "type": "child",
+                "tweet_id": "asdf1",
+                "tweet_text": "asdf1",
                 "tweet_capture_bin": "dGVzdA==" 
             },
             { 
                 "id": "child_doc_2", 
                 "title": "seed",
-                "tweet_id": "asdf",
-                "tweet_text": "asdf",
+                "type": "child",
+                "tweet_id": "asdf2",
+                "tweet_text": "asdf2",
                 "tweet_capture_bin": "dGVzdA=="
             },
         ]
@@ -68,7 +76,13 @@ solr.add([{
 results = solr.search('bananas')
 results = solr.search('title:seed')
 results = solr.search('title:*')
-solr.search('title:*RO*', **{'rows': 0, 'start':5, 'sort':'id DESC'})
+results = solr.search('title:*RO*', **{'rows': 0, 'start':5, 'sort':'id DESC'})
+results = solr.search(
+    '{!parent which="type: parent"} type: child AND tweet_text: asdf1',
+    **{
+        'fl': 'id, [child parentFilter=\"type: parent\" childFilter=\"type: child AND tweet_text: asdf1\"]', 
+    }
+)
 # The ``Results`` object stores total results found, by default the top
 # ten most relevant results and any additional data like facets/highlighting/spelling/etc.
 print("Found {} result(s).".format(len(results)))

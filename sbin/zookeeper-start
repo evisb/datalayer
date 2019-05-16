@@ -1,3 +1,4 @@
+
 #!/usr/bin/env bash
 
 # Licensed to Datalayer (https://datalayer.io) under one or more
@@ -17,14 +18,14 @@
 # specific language governing permissions and limitations
 # under the License.
 
-echo -e $YELLOW$BOLD"Apache Zookeeper Help"$NOCOLOR$NOBOLD$NOCOLOR
+echo -e $YELLOW$BOLD"Starting Apache Zookeeper..."$NOBOLD$NOCOLOR
 echo
-echo "echo dump | nc 127.0.0.1 2181"
+
+echo $ZOOKEEPER_HOME
+echo $ZOOKEEPER_CONF_FILE
+
+$ZOOKEEPER_HOME/bin/zkServer.sh start $ZOOKEEPER_CONF_FILE
+
+rm zookeeper.out
 echo
-echo -e $YELLOW"dla zk-cli"$NOCOLOR
-echo
-echo -e "connect localhost:2181"
-echo -e "create /hello hello-data"
-echo -e "ls /"
-echo -e "quit"
-echo
+dla zookeeper-help

@@ -17,10 +17,14 @@
 # specific language governing permissions and limitations
 # under the License.
 
-echo -e $YELLOW$BOLD"Starting Apache Zookeeper CLI"$NOBOLD$NOCOLOR
+echo -e $YELLOW$BOLD"Apache Zookeeper Help"$NOCOLOR$NOBOLD$NOCOLOR
 echo
-
-DLA_SKIP_HEADER=true dla zk-help
-
-$ZOOKEEPER_HOME/bin/zkCli.sh -server localhost:2181
+echo "echo dump | nc 127.0.0.1 2181"
+echo
+echo -e $YELLOW"dla zookeeper-cli"$NOCOLOR
+echo
+echo -e "connect localhost:2181"
+echo -e "create /hello hello-data"
+echo -e "ls /"
+echo -e "quit"
 echo

@@ -17,14 +17,5 @@
 # specific language governing permissions and limitations
 # under the License.
 
-echo -e $YELLOW$BOLD"Starting Apache Zookeeper..."$NOBOLD$NOCOLOR
-echo
-
-echo $ZOOKEEPER_HOME
-echo $ZOOKEEPER_CONF_FILE
-
-$ZOOKEEPER_HOME/bin/zkServer.sh start $ZOOKEEPER_CONF_FILE
-
-rm zookeeper.out
-echo
-dla zk-help
+DLA_SKIP_HEADER=true dla zookeeper-stop
+DLA_SKIP_HEADER=true dla zookeeper-start

@@ -561,7 +561,7 @@ curl http://localhost:8983/solr/query -d 'q=*:*&
 '
 ```
 
-### Solr Subfacets
+### Subfacets
 
 NOTE: Some examples use syntax only supported in Solr 5.2!
 Download a Solr 5.2 snapshot to try them out.
@@ -570,11 +570,11 @@ Subfacets (also called Nested Facets) is a more generalized form of Solr’s cur
 
 Subfacet advantages over pivot faceting:
 
-    Subfacets work with facet functions (statistics), enabling powerful real-time analytics
-    Can add a subfacet to any facet type (field, query, range)
-    A subfacet can be of any type (field/terms, query, range)
-    A given facet can have multiple subfacets
-    Just like top-level facets, each subfacet can have it’s own configuration (i.e. offset, limit, sort, stats)
++ Subfacets work with facet functions (statistics), enabling powerful real-time analytics
++ Can add a subfacet to any facet type (field, query, range)
++ A subfacet can be of any type (field/terms, query, range)
++ A given facet can have multiple subfacets
++ Just like top-level facets, each subfacet can have it’s own configuration (i.e. offset, limit, sort, stats)
 
 Subfacet Syntax
 
@@ -582,26 +582,30 @@ Subfacets are part of the new Facet Module, and are naturally expressed in the J
 
 For example, a terms facet on the “genre” field looks like:
 
-  top_genres:{ 
-    type: terms,
-    field: genre,
-    limit: 5
-  }
+```json
+top_genres:{ 
+  type: terms,
+  field: genre,
+  limit: 5
+}
+```
 
 Now if we wanted to add a subfacet to find the top 4 authors for each genre bucket:
 
-  top_genres:{
-    type: terms,
-    field: genre,
-    limit: 5,
-    facet:{
-      top_authors:{
-        type: terms,
-        field: author,
-        limit: 4
-      }
+```json
+top_genres:{
+  type: terms,
+  field: genre,
+  limit: 5,
+  facet:{
+    top_authors:{
+      type: terms,
+      field: author,
+      limit: 4
     }
   }
+}
+```
 
 Complex Subfacet Examples
 
@@ -687,7 +691,116 @@ top_authors:{
   }
 }
 
+## Join
+
+For people who are used to SQL, it's important to note that Joins in Solr are not really equivalent to SQL Joins because no information about the table being joined "from" is carried forward into the final result. 
+
+A more appropriate SQL analogy would be an "inner query".
+
+This Solr request...
+
+```
+/solr/collection1/select ? fl=xxx,yyy & q={!join from=inner_id to=outer_id}zzz:vvv
+```
+
+Is comparable to this SQL statement...
+
+```sql
+SELECT xxx, yyy
+FROM collection1
+WHERE outer_id IN (SELECT inner_id FROM collection1 where zzz = "vvv")
+```
+
+```bash
+curl http://localhost:8983/solr/demo/update?commitWithin=5000 -H 'Content-type:text/csv' -d '
+id,region_s,sales_i
+1,east,100000
+2,west,200000
+3,north,300000
+4,south,400000
+'
+```
+
+```bash
+curl http://localhost:8983/solr/demo/update?commitWithin=5000 -H 'Content-type:text/csv' -d '
+id,name_s,loc_region_s,salary_i,mgr_s
+5,chris,east,100000,yes
+6,jen,west,200000,yes
+7,james,east,75000,no
+8,ruby,north,50000,yes
+9,charlotte,west,120000,yes
+'
+```
+
+```bash
+curl http://localhost:8983/solr/demo/query -d '
+{
+  params: {
+    q : "{!join from=loc_region_s to=region_s fromIndex=demo}mgr_s:yes",
+  }
+}'
+```
+
+```bash
+curl http://localhost:8983/solr/demo/query -d '
+{
+  params: {
+    q : "{!join from=loc_region_s to=region_s fromIndex=demo}salary_i:[120000 TO 120000]",
+  }
+}'
+```
+
 ## Nested Example 1
+
+```bash
+curl http://localhost:8983/solr/demo/update?commitWithin=5000 -d '
+[
+  {
+    "id":"Project 1",
+    "type":"project",
+    "_childDocuments_":[
+      {
+        "id":"item 1.1",
+        "type":"item",
+        "content":"item11"
+      },
+      {
+        "id":"tiem 1.2",
+        "type":"item",
+        "content":"item12"
+      }
+    ]
+  },
+  {
+    "id":"Project 2",
+    "type":"project",
+    "_childDocuments_":[
+      {
+        "id":"item 2.1",
+        "type":"item",
+        "content":"item21"
+      },
+      {
+        "id":"tiem 2.2",
+        "type":"item",
+        "content":"item22"
+      }
+    ]
+  }
+]'
+```
+
+```bash
+curl http://localhost:8983/solr/demo/query -d '
+{
+  params: {
+    q : "{!parent which=\"type: project\"} type: item AND content: item1*",
+    fl : "id, [child parentFilter=\"type: project\" childFilter=\"type: item AND content: item1*\"]",
+  }
+}'
+```
+
+## Nested Example 2
 
 + https://medium.com/@pablocastelnovo/nesting-documents-in-apache-solr-12ef44ea2901
 
@@ -742,13 +855,321 @@ curl http://localhost:8983/solr/demo/query -d '
 curl http://localhost:8983/solr/demo/query -d '
 {
   params: {
-    q : "*:*",
+    q : "*: *",
     fl : "*, [child parentFilter=\"nodeType: profile\" childFilter=\"nodeType: comment AND content: term1\"]",
   }
 }'
 ```
 
-## Nested Example 2
+```bash
+curl http://localhost:8983/solr/demo/query -d '
+{
+  params: {
+    q : "{!parent which=\"nodeType: profile\"} nodeType: comment AND content: term2",
+    fl : "id, [child parentFilter=\"nodeType: profile\" childFilter=\"nodeType: comment AND content: term2\"]",
+  }
+}'
+```
+
+## Nested Example 3
 
 + https://medium.com/@alisazhila/solr-s-nesting-on-solr-s-capabilities-to-handle-deeply-nested-document-structures-50eeaaa4347a
 + https://github.com/alisatl/solr_nesting
+
+```bash
+curl http://localhost:8983/solr/demo/update?commitWithin=5000 -d '
+[
+    {
+        "date": "2015-04-10T9:00:00Z",
+        "path": "1.blog-posts",
+        "_childDocuments_": [
+            {
+                "path": "2.blog-posts.body",
+                "_childDocuments_": [
+                    {
+                        "path": "3.blog-posts.body.keywords",
+                        "type": "search engine",
+                        "id": "13092-16908",
+                        "text": "Solr"
+                    }
+                ],
+                "id": "13092-80687",
+                "text": "Here I write how useful Solr is..."
+            },
+            {
+                "path": "2.blog-posts.title",
+                "_childDocuments_": [
+                    {
+                        "path": "3.blog-posts.title.keywords",
+                        "type": "search engine",
+                        "id": "13092-22146",
+                        "text": "Solr"
+                    },
+                    {
+                        "path": "3.blog-posts.title.keywords",
+                        "type": "entity",
+                        "id": "13092-23089",
+                        "text": "Search Engine"
+                    }
+                ],
+                "id": "13092-15993",
+                "text": "My Post #1: About Solr and Other Search Engines"
+            },
+            {
+                "sentiment": "positive",
+                "author": "Bob",
+                "text": "Great post about Solr",
+                "_childDocuments_": [
+                    {
+                        "path": "3.blog-posts.comments.keywords",
+                        "type": "search engine",
+                        "id": "13092-26117",
+                        "text": "Solr"
+                    },
+                    {
+                        "sentiment": "positive",
+                        "author": "Dave",
+                        "text": "Yeah, I like Solr too",
+                        "_childDocuments_": [
+                            {
+                                "path": "4.blog-posts.comments.replies.keywords",
+                                "type": "search engine",
+                                "id": "13092-12539",
+                                "text": "Solr"
+                            }
+                        ],
+                        "date": "2015-04-10T12:00:00Z",
+                        "path": "3.blog-posts.comments.replies",
+                        "id": "13092-63236"
+                    },
+                    {
+                        "sentiment": "negative",
+                        "author": "Sri",
+                        "text": "I disagree, I prefer Elasticsearch",
+                        "_childDocuments_": [
+                            {
+                                "path": "4.blog-posts.comments.replies.keywords",
+                                "type": "search engine",
+                                "id": "13092-10289",
+                                "text": "Elasticsearch"
+                            }
+                        ],
+                        "date": "2015-04-12T05:00:00Z",
+                        "path": "3.blog-posts.comments.replies",
+                        "id": "13092-19513"
+                    }
+                ],
+                "date": "2015-04-10T11:30:00Z",
+                "path": "2.blog-posts.comments",
+                "id": "13092-22593"
+            }
+        ],
+        "id": "13092",
+        "author": "Alice"
+    },
+    {
+        "date": "2015-11-10T9:00:00Z",
+        "path": "1.blog-posts",
+        "_childDocuments_": [
+            {
+                "path": "2.blog-posts.body",
+                "_childDocuments_": [
+                    {
+                        "path": "3.blog-posts.body.keywords",
+                        "type": "search engine",
+                        "id": "77947-34285",
+                        "text": "Solr"
+                    }
+                ],
+                "id": "77947-38796",
+                "text": "Here I also write how useful Solr is..."
+            },
+            {
+                "path": "2.blog-posts.title",
+                "_childDocuments_": [
+                    {
+                        "path": "3.blog-posts.title.keywords",
+                        "type": "search engine",
+                        "id": "77947-14309",
+                        "text": "Solr"
+                    },
+                    {
+                        "path": "3.blog-posts.title.keywords",
+                        "type": "entity",
+                        "id": "77947-20442",
+                        "text": "feature"
+                    }
+                ],
+                "id": "77947-23787",
+                "text": "About useful features of Solr"
+            },
+            {
+                "sentiment": "negative",
+                "author": "Bob",
+                "text": "You forgot that useful Solrs feature!",
+                "_childDocuments_": [
+                    {
+                        "path": "3.blog-posts.comments.keywords",
+                        "type": "search engine",
+                        "id": "77947-24703",
+                        "text": "Solr"
+                    },
+                    {
+                        "path": "3.blog-posts.comments.keywords",
+                        "type": "entity",
+                        "id": "77947-20250",
+                        "text": "feature"
+                    },
+                    {
+                        "sentiment": "neutral",
+                        "author": "Dave",
+                        "text": "But it only appeared in Solr 5.5, after the post was written",
+                        "_childDocuments_": [
+                            {
+                                "path": "4.blog-posts.comments.replies.keywords",
+                                "type": "search engine",
+                                "id": "77947-84762",
+                                "text": "Solr"
+                            },
+                            {
+                                "path": "4.blog-posts.comments.replies.keywords",
+                                "type": "search engine",
+                                "id": "77947-93247",
+                                "text": "Solr 5.5"
+                            }
+                        ],
+                        "date": "2016-04-10T12:00:00Z",
+                        "path": "3.blog-posts.comments.replies",
+                        "id": "77947-49763"
+                    }
+                ],
+                "date": "2016-04-10T11:30:00Z",
+                "path": "2.blog-posts.comments",
+                "id": "77947-67565"
+            },
+            {
+                "sentiment": "negative",
+                "author": "Sri",
+                "text": "Elasticsearch had it earlier than Solr",
+                "_childDocuments_": [
+                    {
+                        "path": "3.blog-posts.comments.keywords",
+                        "type": "search engine",
+                        "id": "77947-15984",
+                        "text": "Elasticsearch"
+                    },
+                    {
+                        "path": "3.blog-posts.comments.keywords",
+                        "type": "search engine",
+                        "id": "77947-19320",
+                        "text": "Solr"
+                    }
+                ],
+                "date": "2015-12-12T05:00:00Z",
+                "path": "2.blog-posts.comments",
+                "id": "77947-12995"
+            }
+        ],
+        "id": "77947",
+        "author": "Aadit"
+    }
+]'
+```
+
+```bash
+# Example I.1.1.
+# First, let’s try to find all comments that expressed positive sentiment.
+curl http://localhost:8983/solr/demo/query -d '{ 
+  query : "path:2.blog-posts.comments AND sentiment:positive" 
+}'
+# Example I.2.1.
+# Now, let’s try to get the top-level posts that received positive comments using the Block Join feature.
+# In the Block Join part: `{!parent which=”path:1.blog-posts”}` we query for all the parents of type “blog-post”, and in the main query, for the documents of type “comments” that express positive sentiment.
+curl http://localhost:8983/solr/demo/query -d '{ 
+  query : "{!parent which=\"path:1.blog-posts\"}+(path:2.blog-posts.comments AND sentiment:positive)" 
+}'
+# # Example I.2.2.
+# Now let’s see what replies the negative comments received (i.e., Children Block Join query from parent “comments” to children “replies”).
+# This is not the most straightforward syntax. We are querying for all children of a parent that is specified in the Block Join part `{!child%20of=”path:2.blog-posts.comments”}`, and it cannot be “lower” than the documents returned by the main query, `path:2.blog-posts.comments AND sentiment:negative`(that is, we cannot simply specify `{!child of=”path:3.blog-posts.comments.replies”}`). For our query the “comment” level is sufficient, we do not want to climb any higher otherwise we might bring “cousins” instead of direct descendants. Then, the children are filtered by their type for “reply” documents only in the filter query, `fq=path:3.blog-posts.comments.replies`, which brings us just what we asked for.
+# If we wanted to get all the comments that received negative replies, i.e., “reply” level in the main query and “comment” level in the Block Join query, we would use Parent Block Join instead.
+curl http://localhost:8983/solr/demo/query -d '{ 
+  params : {
+    q : "{!parent which=\"path:2.blog-posts.comments\"}path:3.blog-posts.comments.replies AND sentiment:positive",
+    fq : "path:3.blog-posts.comments.replies" 
+  }
+}'
+# Example I.3.1.
+# First, we are querying through Block Join query to return all comments (i.e., documents whose path is path:2.blog-posts.comments) that have replies with positive sentiment. Then, using ChildDocTransformerFactory in square brackets in the `fl` parameter, namely,`[child parentFilter=path:2.blog-posts.comments childFilter=path:3.blog-posts.comments.* limit=50]`, we specify that we would like to get a document tree starting from “comments” as top parents (`parentFilter=path:2.blog-posts.comments`) and get all their children of type “replies” (`childFilter=path:3.blog-posts.comments.replies`).
+# One peculiarity of ChildDocTransformerFactory is that you probably would like to set up a higher default limit for the number of returned nested documents (e.g., `limit=50` in the example) when working with real cases because its default value is 10 which is very restrictive.
+curl http://localhost:8983/solr/demo/query -d '{ 
+  params : {
+    q : "{!parent which=\"path:2.blog-posts.comments\"}path:3.blog-posts.comments.replies AND sentiment:positive",
+    fl : "*, [child parentFilter=path:2.blog-posts.comments childFilter=path:3.blog-posts.comments.replies limit=50]"
+  }
+}'
+# Example I.3.2.
+# Another thing, which might be actually considered a drawback, is that ChildDocTransformerFactory flattens the descending structure. This means that any descendant, albeit a grandchild, a ‘niece’, a ‘great-grand-niece’, becomes direct child.
+# Here I restricted the descendants only by the “comments” branch (childFilter=path:*.blog-posts.comments.*) that includes comment keywords and replies on level 3, and reply keywords on level 4. Yet it can be seen that all the descendants are flattened under their common ancestor.
+curl http://localhost:8983/solr/demo/query -d '{ 
+  params : {
+    q: "{!parent which=\"path:2.blog-posts.comments\"}path:3.blog-posts.comments.replies AND sentiment:positive",
+    fl: "*,[child parentFilter=path:2.blog-posts.comments childFilter=path:3.blog-posts.comments.replies limit=50]",
+  }
+}'
+# Example I.4.1.
+# One of the good applications of combining wildcards and path fields is to overcome the lack of binary logic for parent specification in Block Join Query. For example, the syntax does not support a Block Join query querying for parents either of type “body” or “title”:
+# ~q={!parent%20which=”path:2.blog-posts.body” OR “path:2.blog-posts.title”}path:3.blog-posts.*.keywords AND text:Solr~
+# The good news is that Block Join actually supports wildcards so we can query for ANY parent document from level 2 that has “Solr” as its keyword and then filter only those of the desired types through filter query `fq`:
+curl http://localhost:8983/solr/demo/query -d '{ 
+  params : {
+    q: "{!parent which=\"path:2.*\"}path:\"3.blog-posts.*.keywords\" AND text:Solr",
+    fq: "path:2.blog-posts.title OR path:2.blog-posts.body",
+  }
+}'
+# Example I.4.2.
+# Similar to Examples I.3.1 and I.3.2, we can specify the general level for documents to be returned (using ChildDocTransformerFactory). Let’s say we want to see all other keywords for the documents at level 2 that have “feature” as their keyword. Due to the structure of the example document hierarchy where each keyword is treated as an independent document with “text” and “type” fields, querying for the whole list of keywords at a certain level directly (q=path:3.*.keywords AND text:feature) will not bring the desired results. It will only return precisely the “keyword” document that contains text field “feature”. No other keywords will be returned.
+# Therefore, ChildDocTransformerFactory with its childFilter again comes handy.
+curl http://localhost:8983/solr/demo/query -d '{ 
+  params : {
+    q: "{!parent which=\"path:2.*\"}path:3.*.keywords AND text:feature",
+    fl: "id,text,path,[child parentFilter=path:2.* childFilter=path:3.*.keywords",
+    fl: "text",
+  }
+}'
+# Example I.5.
+# If we are interested in more complex traversing of the document hierarchy, we can also use Block Join Query in filter query part. For example, we want to get all level 2 documents that contain keyword “Solr” and positive replies. “Keyword” documents are at the same level as “reply” documents, so they are “cousins”. Therefore, they cannot be specified in one main query as in:
+# ~q={!parent%20which=”path:2.*”}path:3.*.keywords%20AND%20text:Solr%20AND%20path:3.*.replies%20AND%20sentiment:positive~
+which returns 0 documents because documents cannot be of type “keywords” (`path:3.*.keywords`) and “replies” (`path:3.*.replies`) at the same time.
+# The correct way would be to use a filter query with corresponding Block Join query:
+# Here I am also returning the substructure via ChildDocTransformerFactory to verify the results.
+curl http://localhost:8983/solr/demo/query -d '{ 
+  params : {
+    q: "{!parent which=”path:2.*”}path:3.blog-posts.*.keywords AND text:Solr",
+    fq: "{!parent which=”path:2.*”}path:3.blog-posts.*.replies AND sentiment:positive",
+    fl: "*,[child parentFilter=”path:2.*” childFilter=”path:3.*”]",
+  }
+}'
+```
+
+## Backup and Restore
+
+```bash
+docker exec -it --user=solr solr rm -fr /tmp/solr_demo_backup
+curl http://localhost:8983/solr/admin/collections?action=BACKUP -d '
+name=solr_demo_backup&
+collection=demo&
+location=/tmp'
+```
+
+```bash
+docker exec -it --user=solr solr ls -alp /tmp/solr_demo_backup
+curl http://localhost:8983/solr/admin/collections?action=DELETE -d '
+name=demo'
+```
+
+```bash
+curl http://localhost:8983/solr/admin/collections?action=RESTORE -d '
+name=solr_demo_backup&
+collection=demo&
+location=/tmp'
+```

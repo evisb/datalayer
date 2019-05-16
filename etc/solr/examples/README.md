@@ -17,13 +17,21 @@ cd $DLAHOME/etc/solr/examples && \
   sleep 3s && \
   docker ps && \
   open http://localhost:8983
-# Create Collections
-cd $SOLR_HOME
-docker exec -it --user=solr solr bin/solr create_collection -c demo -shards 3 -replicationFactor 3
+# Create the `demo` collection.
+# cd $SOLR_HOME
+docker exec -it --user=solr solr bin/solr create_collection -c demo -shards 1 -replicationFactor 1
+# docker exec -it --user=solr solr bin/solr create_collection -c demo -shards 3 -replicationFactor 3
 docker exec -it --user=solr solr bin/post -c demo example/exampledocs/manufacturers.xml
-# docker cp /Users/echar4/datalayer/opt/solr-7.6.0/example/exampledocs/manufacturers.xml solr:/opt/solr/manufacturers.xml
+# docker cp $DLAHOME/opt/solr-7.6.0/example/exampledocs/manufacturers.xml solr:/opt/solr/manufacturers.xml
 # docker exec -it --user=solr solr bin/post -c demo manufacturers.xml
+docker cp $DLAHOME/etc/solr/conf/datalayer  solr:/opt/solr/example
+docker exec -it --user=solr solr bin/solr create_collection -c datalayer -shards 1 -replicationFactor 1 -d /opt/solr/example/datalayer\
+# View the UI.
 open http://localhost:8983/solr
+# Delete the `demo` collection.
+curl http://localhost:8983/solr/admin/collections?action=DELETE -d '
+name=demo'
+docker exec -it --user=solr solr solr delete -c demo
 # Stop.
 cd $DLAHOME/etc/solr/examples && \
   docker-compose -f solr.yml down

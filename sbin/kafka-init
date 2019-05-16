@@ -32,7 +32,7 @@ then
     rm -fr /tmp/kafka-logs
     echo "Kafka files are now removed."
     echo
-    echo "You have to connect to zookeerp with dla zk-cli and run the following commands:"
+    echo "You have to connect to zookeerp with dla zookeeper-cli and run the following commands:"
     echo " rmr /controller_epoch"
     echo " rmr /controller"
     echo " rmr /brokers"
