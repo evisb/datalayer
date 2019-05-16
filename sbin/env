@@ -335,7 +335,7 @@ export PATH=$LUKE_HOME/bin:$PATH
 export SOLR_VERSION=7.6.0
 export SOLR_HOME=$DLAOPT/solr-$SOLR_VERSION
 export PATH=$SOLR_HOME/bin:$PATH
-export SOLR_CONF_DIR=$DLAHOME/etc/solr/conf
+export SOLR_CONF_DIR=$DLAHOME/etc/solr/conf/datalayer
 
 # ------------------------------------
 
