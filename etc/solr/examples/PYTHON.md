@@ -80,7 +80,7 @@ results = solr.search('title:*RO*', **{'rows': 0, 'start':5, 'sort':'id DESC'})
 results = solr.search(
     '{!parent which="type: parent"} type: child AND tweet_text: asdf1',
     **{
-        'fl': 'id, [child parentFilter=\"type: parent\" childFilter=\"type: child AND tweet_text: asdf1\"]', 
+        'fl': 'id,tweet_text [child parentFilter=\"type: parent\" childFilter=\"type: child AND tweet_text: asdf1\"]', 
     }
 )
 # The ``Results`` object stores total results found, by default the top
