@@ -11,7 +11,6 @@ Showcase user interface widget `toolkits` and `theming` with `react.js` and `typ
 + [Fabric UI](./fabric-ui) widgets.
 + [Blueprint.js](./blueprint-js) widgets.
 + [Phosphor JS](./phosphor-js) widgets.
-+ [JupyterLab](./jupyterlab) widgets and applications examples.
 + [Semantic UI](./semantic-ui) widgets.
 
 Some `transversal` useful topics.

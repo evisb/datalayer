@@ -24,8 +24,8 @@ services:
       SOLR_PORT: 8983
       SOLR_HOME: /opt/solr/server/solr
       SOLR_CONF_DIR: /opt/solr/server/solr
-#      ZK_HOST: zk:2181,zk-2:2182,zk-3:2183
-      ZK_HOST: zk:2181
+#      ZK_HOST: zookeeper:2181,zookeeper-2:2182,zookeeper-3:2183
+      ZK_HOST: zookeeper:2181
       SOLR_LOGS_DIR: /opt/solr/server/logs
       SOLR_HOST: solr
       SOLR_HEAP: 1g

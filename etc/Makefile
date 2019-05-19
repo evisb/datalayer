@@ -25,7 +25,7 @@ default: all ## default target is all.
 all: build push ## make clean install build.
 
 build: ## build the image.
-	@exec ./build.sh
+	@exec ./_dev/build.sh
 
 push: ## push the image.
-	@exec ./push.sh
+	@exec ./_dev/push.sh

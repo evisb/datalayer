@@ -95,7 +95,7 @@ export default class About extends React.Component<any, any> {
         </>
         :
         <>
-          <div className={ "heroAbout" } style={{ margin: '0px' }}>
+          <div className={ "heroAbout2" } style={{ margin: '0px' }}>
             <div className="ms-Grid" style={{ padding: 0, width: '100%' }}>
               <div className="ms-Grid-row">
                 <div className="ms-Grid-col ms-sm2 ms-md2 ms-lg2" style={{padding: 0}}>

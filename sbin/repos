@@ -55,10 +55,13 @@ jupyter-nbconvert|https://github.com/datalayer-contrib/jupyter-nbconvert.git|htt
 jupyter-nbdime|https://github.com/datalayer-contrib/jupyter-nbdime.git|https://github.com/datalayer-contrib/jupyter-nbdime.git|master \
 jupyter-nbformat|https://github.com/datalayer-contrib/jupyter-nbformat.git|https://github.com/datalayer-contrib/jupyter-nbformat.git|master \
 jupyter-nbgrader|https://github.com/datalayer-contrib/jupyter-nbgrader.git|https://github.com/jupyter/nbgrader.git|master \
+jupyter-nbmelt|https://github.com/datalayer-contrib/jupyter-nbmelt.git|https://github.com/minrk/nbmelt.git|master \
+jupyter-nbreport|https://github.com/datalayer-contrib/jupyter-nbreport.git|https://github.com/choldgraf/nbreport.git|master \
 jupyter-nbviewer|https://github.com/datalayer-contrib/jupyter-nbviewer.git|https://github.com/jupyter/nbviewer.git|master \
 jupyter-notebook|https://github.com/datalayer-contrib/jupyter-notebook.git|https://github.com/jupyter/notebook.git|master \
 jupyter-packaging|https://github.com/datalayer-contrib/jupyter-packaging.git|https://github.com/jupyter/jupyter-packaging.git|master \
 jupyter-pizzabutton|https://github.com/datalayer-contrib/jupyter-pizzabutton.git|https://github.com/peterskipper/pizzabutton.git|master \
+jupyter-server|https://github.com/datalayer-contrib/jupyter-server.git|https://github.com/jupyter/jupyter_server.git|master \
 jupyter-sparkmagic|https://github.com/datalayer-contrib/jupyter-sparkmagic.git|https://github.com/jupyter-incubator/sparkmagic.git|master \
 jupyterhub|https://github.com/datalayer-contrib/jupyterhub.git|https://github.com/jupyterhub/jupyterhub.git|master \
 jupyterhub-auth-ldap|https://github.com/datalayer-contrib/jupyterhub-auth-ldap.git|https://github.com/jupyterhub/ldapauthenticator.git|master \
@@ -129,7 +132,6 @@ spark|https://github.com/datalayer-contrib/spark.git|https://github.com/apache/s
 spark-hbase|https://github.com/datalayer-contrib/spark-hbase-connector.git|https://github.com/hortonworks-spark/shc.git|master \
 spark-kafka|https://github.com/datalayer-contrib/spark-kafka-connector.git|https://github.com/hortonworks-spark/skc.git|master \
 spark-solr|https://github.com/datalayer-contrib/spark-solr.git|https://github.com/lucidworks/spark-solr.git|master \
-zeppelin|https://github.com/datalayer-contrib/zeppelin.git|https://github.com/apache/zeppelin.git|master \
 ";
 
 DLA_REPOS=()

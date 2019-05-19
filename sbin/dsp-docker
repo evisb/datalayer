@@ -28,6 +28,7 @@ DOCKER_SERVICES_FILE_BASE="
   DLA ldap-admin/swarm/ldap-admin.yml
   DLA solr/swarm/solr.yml
   DLA network/swarm/network.yml
+  DLA solr/swarm/solr.yml
   DLA traefik/swarm/traefik.yml
   DLA whoami/swarm/whoami.yml
   DLA zookeeper/swarm/zookeeper.yml

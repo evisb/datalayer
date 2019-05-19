@@ -6,6 +6,14 @@
 >
 > Secured, Scalable, Multi Cloud by Default.
 
+<!--
++ Mix Code and Math in Documents to tell Data Stories
++ Open Science
+1. Collaborative
+1. Reproducible
+1. Scalable and Secured
+-->
+
 [![Join the chat at https://gitter.im/datalayer/datalayer](https://badges.gitter.im/datalayer/datalayer.svg)](https://gitter.im/datalayer/datalayer)
 
 This is the `monorepo` that builds up the `Datalayer Science Plaform`.

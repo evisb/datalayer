@@ -121,6 +121,12 @@ install_jupyterhub() {
     cd $DLAHOME/repos/jupyterhub-spawner-docker
     pip install -e .
 
+    conda install -c anaconda-nb-extensions nb_conda
+    jupyter nbextension install nb_conda --py --sys-prefix --symlink
+    jupyter nbextension enable nb_conda --py --sys-prefix
+    jupyter serverextension enable nb_conda --py --sys-prefix
+    jupyter serverextension list
+
 }
 
 install_jupyterhub

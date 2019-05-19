@@ -505,6 +505,7 @@ If we want to break up the domain into buckets and then calculate a function per
 
 For example (using curl this time).
 
+```bash
 curl http://localhost:8983/solr/query -d 'q=*:*&
  json.facet={
    categories:{
@@ -515,11 +516,12 @@ curl http://localhost:8983/solr/query -d 'q=*:*&
        y : "sum(price)"
      }
    }
- }
-'
+ }'
+```
 
 The response will contain the two stats we asked for in each category bucket.
 
+```json
 [...]
   "facets":{
     "count":32,
@@ -538,6 +540,7 @@ The response will contain the two stats we asked for in each category bucket.
           "y":259.98999786376953
         },
 [...]
+```
 
 ### Facet Sorting
 

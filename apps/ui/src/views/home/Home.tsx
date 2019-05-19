@@ -59,22 +59,6 @@ export default class Home extends React.Component<any, any> {
                       </div>
                     </div>
                   </div>
-                  <div className="ms-Grid-row" style={{ paddingTop: 40, paddingBottom: 40 }}>
-                    <div className={`ms-Grid-col ms-sm12 ms-md12 ms-lg12 text-center`}>
-                      <div className="ms-font-xxl" style={{ paddingBottom: 20 }}>and publish on Twitter.</div>
-                      <div className="ms-font-xl">1. When your Notebook is launched (it can take a few seconds...), go the the Twitter sidebar on the left-hand side of the notebook.</div>
-                      <div className="ms-font-xl">2. Link your Twitter Account with Datalayer clicking on the `SIGN IN` blue button and `Authorize app` in the popup window.</div>
-                      <div className="ms-font-xl">3. Take a screenshot with the right `Capture` button (select with the mouse the screen area you want to capture).</div>
-                      <div className="ms-font-xl">4. Type a text in the input form and click on the left blue `Tweet` button.</div>
-                    </div>
-                  </div>
-                  <div className="ms-Grid-row" style={{ paddingTop: 40 }}>
-                    <div className={`ms-Grid-col ms-sm12 ms-md12 ms-lg12 text-center`}>
-                      <a href="#" onClick={e => { e.preventDefault(); history.push('/notebook') }}>
-                        <img className={ "productImage" } src={ twitter } style={{width: 500}} />
-                      </a>
-                    </div>
-                  </div>
 {/*
                   <div className="ms-Grid-row">
                     <div className={`ms-Grid-col ms-sm6 ms-md6 ms-lg6 text-center`}>
