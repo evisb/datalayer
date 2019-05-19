@@ -12,31 +12,49 @@ cd $DLAHOME/etc/jupyterlab/examples/cell && \
   yarn install && \
   yarn build && \
   python main.py
+```
+
+```bash
 # console example.
 cd $DLAHOME/etc/jupyterlab/examples/console && \
   yarn install && \
   yarn build && \
   python main.py
+```
+
+```bash
 # filebrowser example.
 cd $DLAHOME/etc/jupyterlab/examples/filebrowser && \
   yarn install && \
   yarn build && \
   python main.py
+```
+
+```bash
 # notebook example.
 cd $DLAHOME/etc/jupyterlab/examples/notebook && \
   yarn install && \
   yarn build && \
   python main.py
+```
+
+```bash
 # app example.
 cd $DLAHOME/etc/jupyterlab/examples/app && \
   yarn install && \
   yarn build && \
   python main.py
+```
+
+```bash
 # terminal example.
 cd $DLAHOME/etc/jupyterlab/examples/terminal && \
   yarn install && \
   yarn build && \
   python main.py
+```
+
+```bash
 # vega example.
 # cd $DLAHOME/etc/jupyterlab/examples/vega && \
 #   yarn install && \
