@@ -7,8 +7,9 @@
 > Secured, Scalable, Multi Cloud by Default.
 
 <!--
-+ Mix Code and Math in Documents to tell Data Stories
-+ Open Science
++ Open Science with Jupyter Notebooks.
++ Rich Documents with Code, Math and Media to tell Data Stories.
++ Jupyter Notebook Sharing and Collaboration Platform.
 1. Collaborative
 1. Reproducible
 1. Scalable and Secured

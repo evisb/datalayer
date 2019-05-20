@@ -1,14 +1,6 @@
 [![Datalayer](https://docs.datalayer.io/logo/datalayer-25.svg)](https://datalayer.io)
 
-# Binder
-
-[BinderHub Repository](https://github.com/jupyterhub/binderhub)
-
-[BinderHub Docs](https://binderhub.readthedocs.io).
-
-[Binder Examples Repository](https://github.com/binder-examples)
-
-[Binder Gitter Commmunity](https://gitter.im/jupyterhub/binder).
+# BinderHub
 
 ```bash
 dla minikube-start

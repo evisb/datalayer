@@ -1,0 +1,24 @@
+# Copyright (c) Datalayer https://datalayer.io.
+# Distributed under the terms of the Apache License, Version 2.0.
+
+version: 0.0.1
+project:
+- url: https://datalayer.io/eric/example
+- short_name: example
+- name: Example project
+- description: A data file example.
+- comment: This file is to be placed in a datalayer project repository.
+- owner: eric
+- creation_date: 2008-09-15T15:53:00+05:00
+- last_update_date: 2008-09-15T15:53:00+05:00
+- license: MIT
+main:
+- main.ipynb
+datasets:
+- dataset: https://datalayer.io/datalayer/data/titanic.csv
+  format: csv
+- dataset: https://github.com/datalayer/example/data/iris.csv
+  format: csv
+kernels:
+- kernel: https://datalayer.io/datalayer/kernels/python/kernel.json
+- kernel: https://github.com/echarles/example/kernels/pyspark/kernel.json

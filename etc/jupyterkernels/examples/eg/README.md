@@ -2,10 +2,6 @@
 
 # Jupyter Enterprise Gateway
 
-[Enterprise Gateway Repository](https://github.com/jupyter-incubator/enterprise_gateway).
-
-[Enterprise Gateway Docs](https://jupyter-enterprise-gateway.readthedocs.io/en/latest).
-
 ```bash
 pip install jupyter_enterprise_gateway
 # conda install -c conda-forge jupyter_enterprise_gateway

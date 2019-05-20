@@ -1,23 +1,23 @@
-# Licensed to Datalayer (https://datalayer.io) under one or more
-# contributor license agreements.  See the NOTICE file
-# distributed with this work for additional information
-# regarding copyright ownership. Datalayer licenses this file
-# to you under the Apache License, Version 2.0 (the
-# "License"); you may not use this file except in compliance
-# with the License.  You may obtain a copy of the License at
-#
-#   http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing,
-# software distributed under the License is distributed on an
-# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-# KIND, either express or implied.  See the License for the
-# specific language governing permissions and limitations
-# under the License.
+# Copyright (c) Datalayer https://datalayer.io.
+# Distributed under the terms of the Apache License, Version 2.0.
 
-**/*.css linguist-vendored=true 
-**/*.html linguist-vendored=true
-**/*.js linguist-vendored=true
-**/*.java linguist-vendored=false
-**/*.sh linguist-vendored=true
-**/*.tpl linguist-vendored=true
+# Don't allow people to merge changes to these generated files, because the result
+# may be invalid.  You need to run "rush update" again.
+pnpm-lock.yaml               merge=binary
+shrinkwrap.yaml              merge=binary
+npm-shrinkwrap.json          merge=binary
+yarn.lock                    merge=binary
+
+# Rush's JSON config files use JavaScript-style code comments.  The rule below prevents pedantic
+# syntax highlighters such as GitHub's from highlighting these comments as errors.  Your text editor
+# may also require a special configuration to allow comments in JSON.
+#
+# For more information, see this issue: https://github.com/Microsoft/web-build-tools/issues/1088
+#
+*.json                       linguist-language=JSON-with-Comments
+**/*.css                     linguist-vendored=true 
+**/*.html                    linguist-vendored=true
+**/*.js                      linguist-vendored=true
+**/*.java                    linguist-vendored=false
+**/*.sh                      linguist-vendored=true
+**/*.tpl                     linguist-vendored=true

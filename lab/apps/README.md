@@ -27,6 +27,7 @@ Some `transversal` useful topics.
 Authenticate and authorize with various providers.
 
 + [OAuth1 with Twitter](./oauth1-twitter) API.
++ [Tornado](./tornado-auth).
 
 #### :moyai: Integration with External Systems API
 

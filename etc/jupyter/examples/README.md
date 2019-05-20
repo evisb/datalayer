@@ -38,7 +38,7 @@ jupyter notebook --help
 ```
 
 ```bash
-jupyter notebook --log-level DEBUG --port 8080 --notebook-dir ~
+jupyter notebook --log-level DEBUG --port 8080 --notebook-dir ~ --NotebookApp.base_project_url=datalayer 
 ```
 
 ```

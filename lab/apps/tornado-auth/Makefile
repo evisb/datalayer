@@ -2,7 +2,7 @@
 # contributor license agreements.  See the NOTICE file
 # distributed with this work for additional information
 # regarding copyright ownership. Datalayer licenses this file
-# to you under the Apache License, Version 2.0 (the 
+# to you under the Apache License, Version 2.0 (the
 # "License"); you may not use this file except in compliance
 # with the License.  You may obtain a copy of the License at
 #
@@ -15,22 +15,13 @@
 # specific language governing permissions and limitations
 # under the License.
 
-version: 0.0.1
-name: Datalayer
-description: The Datalayer Monorepo.
-library:
-  dataset:
-  - dataset-1
-  - dataset-2
-  ui:
-  - ui-1
-  - ui-2
-  api:
-  - api-1
-  - api-2
-  app:
-  - app-1
-  - app-2
-kernel:
-  - kernel-1
-  - kernel-2
+.PHONY: clean build dist env
+
+help: ## display this help.
+	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n"} /^[a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
+
+default: help ## default target is help.
+
+start:
+	echo open http://localhost:8123
+	python main.py

@@ -10,8 +10,14 @@ The UI will help you create and manage your K8S cluster and transform it into a 
 
 Datalayer UI is built on `react.js` and other javascript libraries.
 
-Ensure you fullfill the [requirements](https://docs.datalayer.io/ops/requirements.html).
-
+Ensure you fullfill the [requirements](https://docs.datalayer.io/devops/requirements.html).
+<!--
+```bash
+npm install -g @microsoft/rush
+rush install
+rush build
+```
+-->
 ```bash
 # Install the dependencies and build.
 cd $DLAHOME/apps/ui && \

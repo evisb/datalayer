@@ -2,7 +2,7 @@
 
 # Keycloak Examples
 
-Federation with Keycloak, a `OAuth 2.0` and `OpenID Connect` provider.
+> Federation with Keycloak, a `OAuth 2.0` and `OpenID Connect` provider.
 
 ```bash
 cd $DLAHOME/etc/keycloak/examples && \
